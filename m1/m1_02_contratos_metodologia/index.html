@@ -104,7 +104,7 @@ Universidad de los Andes
 - Documentación de funciones
 	- Explican el propósito de la función (alineado con [PEP 257](https://peps.python.org/pep-0257/))​
 - Encerrados en comillas triples (```"""```)​
-- Típicamente incluyen:​
+- El la documentación producida en EDA, incluyen:​
 	- Descripción/propósito​
 	- Parámetros (*Parameters*)​
 		- Nombre, tipo, descripción, valor por defecto (si lo hay)​
@@ -117,13 +117,13 @@ Universidad de los Andes
 ### doctrings - Ejemplo
     
 ```Python
-def suma(primer_operando1: int, segundo_operando2: int = 0) -> int:
+def suma(primer_operando1: int, segundo_operando2: int) -> int:
     """
     Calcula la suma de dos números enteros.
 
     :param operando1: El primer número entero a sumar.
     :type operando1: int
-    :param operando2: El segundo número entero a sumar. Por defecto, es 0.
+    :param operando2: El segundo número entero a sumar.
     :type operando2: int, optional
 
     :returns: El resultado de sumar los dos números enteros.
@@ -217,6 +217,12 @@ def suma(primer_operando1: int, segundo_operando2: int = 0) -> int:
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
+> "Talk is cheap. Show me the code." 
+> 
+Linus Torvalds
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
 ### ¿Cómo se implementan las pruebas?
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
@@ -291,13 +297,13 @@ help(doctest.testmod)
 
 ```Python[14-21]
 import doctest
-def suma(primer_operando1: int, segundo_operando2: int = 0) -> int:
+def suma(primer_operando1: int, segundo_operando2: int) -> int:
     """
     Calcula la suma de dos números enteros.
 
     :param operando1: El primer número entero a sumar.
     :type operando1: int
-    :param operando2: El segundo número entero a sumar. Por defecto, es 0.
+    :param operando2: El segundo número entero a sumar.
     :type operando2: int, optional
 
     :returns: El resultado de sumar los dos números enteros.
@@ -489,13 +495,13 @@ ok
 
 ```Python[24,25]
 import doctest
-def suma(primer_operando1: int, segundo_operando2: int = 0) -> int:
+def suma(primer_operando1: int, segundo_operando2: int) -> int:
     """
     Calcula la suma de dos números enteros.
 
     :param operando1: El primer número entero a sumar.
     :type operando1: int
-    :param operando2: El segundo número entero a sumar. Por defecto, es 0.
+    :param operando2: El segundo número entero a sumar.
     :type operando2: int, optional
 
     :returns: El resultado de sumar los dos números enteros.
@@ -688,13 +694,13 @@ Got:
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Calificación de parciales
+### Calificación de parciales (explicación preliminar)
 
 - Parciales módulos 1 a 3:
 	- Creados por el profesor magistral
 	- Mínimo 2 ejercicios
 		- Evalúan **capacidades de pensamiento algorítmico**
-		- Calificación objetiva e imparcial:
+		- Calificación **objetiva, imparcial**:
 			- Basada en rúbricas:
 				- Correctitud, eficiencia y **pruebas exitosas**
 					- En ese orden<!-- .element: class="fragment highlight-red" -->
@@ -708,10 +714,6 @@ Got:
 		- [**Guía de documentación**](https://isis1225devs.github.io/ISIS1225-Structure-Documentation/documentation-guide.html)
 
 - **TODO2:**
-	- Crear un usuario en [GitHub](https://github.com):
-		- Usando su usuario (correo) Uniandes
-		
-- **TODO3:**
 	- Ir formando un **grupo de 3**
 		- Idealmente, **antes** del primer laboratorio
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
