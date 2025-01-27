@@ -404,7 +404,8 @@ def es_par(n):
 
 <br>
 
-- **Nota**: En las presentaciones, se usa un estilo de documentación abreviado
+- Nota: Por restricciones de espacio
+	- En algunas presentaciones se documentación abreviada (estándar de Python)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -433,7 +434,7 @@ def es_par(n):
     return n % 2 == 0
 ```
 
-- En resumen, todas son operaciones primitivas/constantes
+- **Todas son operaciones primitivas/constantes**:
 
 ```
 T(n) = c1 + c2 + c3
@@ -492,6 +493,9 @@ def dar_elemento_en_posicion(lista, pos):
 
 <br>
 
+- Todas son operaciones primitivas/constantes
+<br>
+
 - Orden de crecimiento temporal del algoritmo:
 	 - &shy;<!-- .element: class="fragment" data-fragment-index="8" -->Notación Big O: **O(1)**
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
@@ -519,7 +523,7 @@ for elemento in lista:
 - Característica clave: 
 	- El ciclo recorre cada elemento de la lista una vez
 - Explicación:
-	- `elemento` toma el valor de cada elemento en cada iteración
+	- `elemento` toma el valor de cada elemento de la listas en cada iteración
 	- El número total de iteraciones (n) es igual al número de elementos en la lista
 		- El tiempo total es directamente proporcional 
 			- Al tamaño de la entrada: **O(n)**
@@ -566,6 +570,10 @@ def sumar_elementos(lista):
 
 <br>
 
+- Las operaciones de complejidad lineal dominan la estimación
+
+<br>
+
 - Orden de crecimiento temporal del algoritmo:
 	 - &shy;<!-- .element: class="fragment" data-fragment-index="8" -->Notación Big O: **O(n)**
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
@@ -573,7 +581,9 @@ def sumar_elementos(lista):
 
 ### Casos (1/2)
 
-El análisis de algoritmos no constantes, típicamente considera casos
+- El análisis de algoritmos no constantes, típicamente considera tres casos:
+
+<br>
 
 - **Peor caso:**
 	- Input que requiere el máximo tiempo de ejecución del algoritmo
@@ -603,7 +613,7 @@ for elemento in lista:
 - Característica clave: 
 	- Comprobación de cada elemento hasta encontrar una coincidencia
 - Explicación:
-	- En el peor caso, hay que visitar cada elemento una vez
+	- En el **peor caso, hay que visitar cada elemento una vez**
 	- El tiempo total en el peor caso 
 		- Es proporcional al número de elementos: **O(n)**
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
@@ -650,7 +660,7 @@ for elemento in lista:
 
 ```
 
-- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Cuando cada elemento buscado no existe
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Cuando el elemento buscado no existe
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -676,9 +686,9 @@ for elemento in lista:
 
 
 
-- Puede ser demasiado pesimista para el uso general si el peor caso es raro
-- No siempre representa el rendimiento típico de un algoritmo en uso práctico
-- Proporciona a los usuarios una expectativa realista del rendimiento del algoritmo
+- Si el peor caso es raro
+	- Puede ser demasiado pesimista para el uso general o
+- Proporciona a los usuarios una **expectativa realista** del rendimiento del algoritmo
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -728,7 +738,7 @@ def busqueda_secuencial(lista, elemento_a_buscar):
 ```
 
 - ¿Cuál sería el peor caso?
-	 - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Cuando el elemento buscado no existe en la lista
+	 - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Elemento buscado inexistente
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -747,10 +757,15 @@ def busqueda_secuencial(lista, elemento_a_buscar):
     return resultado
 ```
 
-- Por simplicidad, se incluyen las principales operaciones lineales:
+- Por simplicidad, se incluyen solo las principales **operaciones lineales**:
 	-  `indice < len(lista) and not encontrado`: `n` <!-- .element: class="fragment" data-fragment-index="1" -->
 	- `lista[indice] == elemento_a_buscar`: `n` <!-- .element: class="fragment" data-fragment-index="2" -->
 	- `indice += 1`: `n` <!-- .element: class="fragment" data-fragment-index="3" -->
+
+
+<br>
+
+- Las operaciones de complejidad lineal dominan la estimación
 
 
 <br>
@@ -787,8 +802,8 @@ while i > 0:
 	- Variable se `i` divide por `c` en cada iteración
 		- Disminución hasta que `i <= 1`
 - Iteraciones limitadas a log<sub>c</sub> de `n`
-- En complejidad temporal, no importa el coeficiente constante de log
-	- Entonces, la complejidad logarítmica es **O(log n)**
+	- En complejidad temporal, no importa el coeficiente constante de log
+		- Entonces, la complejidad logarítmica es **O(log n)**
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -807,8 +822,8 @@ while i < n:
 	- Variable `i` se multiplica por `c` en cada iteración
 		- Crecimiento exponencial de `i`
 	- Iteraciones limitadas a log<sub>c</sub> de `n`
-	- En complejidad temporal, no importa el coeficiente constante de log
-		- Entonces, la complejidad logarítmica es **O(log n)**
+		- En complejidad temporal, no importa el coeficiente constante de log
+			- Entonces, la complejidad logarítmica es **O(log n)**
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -942,13 +957,13 @@ def busqueda_binaria(lista, elemento_a_buscar):
 ### Búsqueda secuencial  vs búsqueda binaria (2/2)
 
 - Búsqueda secuencial:
-	- Orden lineal **O(n)**:
-		- Simple pero ineficiente para grandes cantidades de datos
+	- **Orden lineal O(n):** <!-- .element: class="fragment" data-fragment-index="1" -->
+		- Simple pero ineficiente para grandes cantidades de datos <!-- .element: class="fragment" data-fragment-index="2" -->
 
-- Búsqueda binaria: <!-- .element: class="fragment highlight-blue" -->
-	- Orden logarítmico **O(log n)**:
-		- Más complejo y requiere ordenamiento, pero, 
-			- Muy eficiente para grandes cantidades de datos
+- Búsqueda binaria: 
+	- **Orden logarítmico O(log n):** <!-- .element: class="fragment" data-fragment-index="3" -->
+		- Más complejo y requiere ordenamiento, pero,  <!-- .element: class="fragment" data-fragment-index="4" -->
+			- Muy eficiente para grandes cantidades de datos <!-- .element: class="fragment" data-fragment-index="5" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -1324,10 +1339,10 @@ def cocktail_shaker_sort(arr: list[int]) -> None:
 -  Cuando  el arreglo está totalmente desordenado:
 	
 ```plaintext
-- Primera pasada: n−1 comparaciones.
-- Segunda pasada: n−2 comparaciones.
+- Primera pasada: n−1 comparaciones
+- Segunda pasada: n−2 comparaciones
 - ...
-- Última pasada: 1 comparación.
+- Última pasada: 1 comparación
 ```
 
 
@@ -1476,7 +1491,7 @@ def buscar_tripletes(lista):
 	- Duplicaría el tiempo de ejecución
 	- Triplicaría el tiempo de ejecución
 	- Cuadruplicaría el tiempo de ejecución
-	- Octuplicaría el tiempo de ejecución <!-- .element: class="fragment highlight-blue" -->
+	- **Octuplicaría el tiempo de ejecución** 
 	- No tendría impacto significativo
 
 - Explicación: 
@@ -1489,7 +1504,7 @@ def buscar_tripletes(lista):
 - Características
 	- Crecimiento muy rápido
 		- El tiempo aumenta exponencialmente con el tamaño de la entrada
-		- Tiempo proporcional a `bⁿ`, donde `b` y `n` son `> 1`
+		- Tiempo proporcional a `bⁿ`, donde `b` y `n` son `> 1` 
     
 
 	- Típicamente involucra algoritmos que exploran todas las posibilidades
