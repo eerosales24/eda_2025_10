@@ -126,6 +126,7 @@ Universidad de los Andes
 - Componentes:
 	- **Caso base**: 
 		- Condición que detiene la recursión
+			- La función no se invoca a sí misma
 	- **Caso recursivo**: 
 		- Función se invoca a sí misma 
 			- En una versión más pequeña del problema
@@ -376,14 +377,14 @@ factorial(5) = 120
 
 - El algoritmo será recursivo
 	- Entonces se necesita:
-	 1. Caso base
-	 2. Caso recursivo
+	    1. Caso base
+	    2. Caso recursivo
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ### Diseño (4/8)
 
-- ¿Cuál es el caso base?
+- ¿Cuál es el **caso base**?
 	- Cuando la función NO se llama a sí misma
 	
 ```plaintext
@@ -395,13 +396,13 @@ factorial(1) = 1
 
 ### Diseño (5/8)
 
-- ¿Cuál es el caso recursivo?
+- ¿Cuál es el **caso recursivo**?
 	- Cuando la función se llama a sí misma
 	
 ```plaintext
 factorial(2) = 2 × factorial(1) = 2
 factorial(3) = 3 × factorial(2) = 6
-factorial(4) = 4 × factorial(3) 24
+factorial(4) = 4 × factorial(3) = 24
 factorial(5) = 5 × factorial(4) = 120
 ```
 
@@ -442,7 +443,7 @@ factorial(0) = 1
 ### Diseño (8/8)
 
 - Así se ven los casos de prueba de la función
-	- En este caso se usarán 6 casos
+	- En este caso se usarán solo **6** casos
 		- Se incluyen **dentro de la documentación**
 
 ```Python[10-21]
@@ -553,7 +554,7 @@ elif n == 2:
 
 ### Construcción (7/9)
 
-
+- Se refina el código con base a la definición matemática:
 <img src="eda/modulo_1/img/factorial.png" alt="" style="width: 55%; height: 8%; object-fit: fill">
 
 ```python
@@ -610,7 +611,22 @@ def factorial(n):
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Pruebas (1/2)
+### Pruebas (1/3)
+
+1. Verificar si el resultado obtenido es el esperado
+2. Depurar:
+	- Corregir errores
+	- Pulir/mejorar/optimizar
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+> "A good programmer is someone who always looks both ways before crossing a one-way street."
+
+Doug Linder
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Pruebas (2/3)
 
 - Ejecutar los doctests:
 
@@ -647,7 +663,7 @@ doctest.run_docstring_examples(factorial, globals(), verbose=True)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Pruebas (2/2)
+### Pruebas (3/3)
 
 - Revisar los resultados y corregir si es necesario:
 
@@ -698,10 +714,10 @@ ok
 
 ### Quiz I
 
-- Implemente la función `fibonacci` recursivamente
+- Implemente la función `fibonacci()` recursivamente
 
-- Fibonacci:
-	- Secuencia donde cada número es la suma de los dos anteriores
+- **Serie de fibonacci**:
+	- Serie en donde cada número es la suma de los dos anteriores
 	- Ej:
 ```plaintext
 fibonacci(0) = 0
@@ -867,7 +883,7 @@ def factorial(n):
 factorial(4)
 ```
 
-<img src="Pasted image 20250126112103.png" alt="" style="width: 44%; height: 45%; object-fit: fill">
+<img src="Pasted image 20250126112103.png" alt="" style="width: 54%; height: 55%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -988,7 +1004,15 @@ return ... else fibonacci(n - 1) + fibonacci(n - 2)
 
 
 - Orden de crecimiento espacial del algoritmo:
-	 - &shy;<!-- .element: class="fragment" data-fragment-index="8" -->Notación Big O: **O(n)**
+	 - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Notación Big O: **O(n)** 
+
+
+	- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Debido a la profundidad de la pila de llamadas recursivas  
+		- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Que alcanza máximo **n** niveles en el peor caso
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="Pasted image 20250126130411.png" alt="" style="object-fit: scale-down">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -1056,9 +1080,9 @@ def es_impar(n: int) -> bool:
 - Si se depende del número de llamadas recursivas generadas
 
 - **Recursividad lineal o simple**:
-		- Se genera una única llamada interna
-		- Se puede transformar fácilmente en iterativa
-		- Ej: función factorial recursiva
+	- Se genera una única llamada interna
+	- Se puede transformar fácilmente en iterativa
+	- Ej: función factorial recursiva
 
 - **Recursividad no lineal o múltiple**:
 	- Se generan dos o más llamadas internas
@@ -1180,12 +1204,12 @@ def factorial(n):
 
 - El ciclo no genera llamadas recursivas 
 	- Ni utiliza estructuras de datos adicionales (como listas o diccionarios)
-- Todo el trabajo se realiza _in situ_ con un espacio constante
-	- El uso de memoria no aumenta con el tamaño de `n`.
+- Todo el trabajo se realiza _in situ_  o _in place_ con un espacio constante
+	- El uso de memoria no aumenta con el tamaño de `n`
 
 <br>
 
-- Orden de crecimiento temporal del algoritmo:
+- Orden de crecimiento espacial del algoritmo:
 	 - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Notación Big O: **O(1)**
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
@@ -1253,7 +1277,7 @@ def factorial_tail_recursive(n, accumulator=1):
 - El parámetro `accumulator` se utiliza para almacenar el resultado parcial del cálculo
 - La llamada recursiva **es la última operación** que se ejecuta
 	- Pasando el nuevo estado del acumulador
-- No hay trabajo pendiente después de la llamada recursiva
+- **No hay trabajo pendiente** después de la llamada recursiva
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -1445,10 +1469,6 @@ def generar_permutaciones(lista):
     [4, 2, 1, 3], [4, 2, 3, 1], [4, 3, 1, 2], [4, 3, 2, 1]]
     """
 ```
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-<img src="Pasted image 20250126130411.png" alt="" style="object-fit: scale-down">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
