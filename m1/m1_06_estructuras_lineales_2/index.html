@@ -242,7 +242,7 @@ Universidad de los Andes
 	- Se necesita navegar desde la cabeza 
 		- Hasta la posición deseada
 - El tiempo aumenta con la posición en la lista
-	- En el peor caso, implica visitar n nodos 
+	- En el peor caso, implica visitar `n` nodos 
 		- Complejidad:
 			- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(n)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
@@ -264,14 +264,14 @@ Universidad de los Andes
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Eliminación al final
+### Eliminación al final (con o sin referencia a la cola)
 - Muy costosa en lista enlazada simple
 	- Aun si se tiene referencia a la cola es insuficiente
-  - No permite acceso directo al penúltimo nodo
+  - No permite **acceso directo** al penúltimo nodo
   - Acceso al penúltimo
     - Requiere recorrido desde la cabeza
 - Complejidad 
-	- En el peor caso, implica visitar todos los nodos
+	- Implica visitar todos los nodos
 		- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(n)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
@@ -282,7 +282,7 @@ Universidad de los Andes
 
 ### Gestión de memoria (1/2)
 
-- Arreglos en memoria (repaso):
+- Array List en memoria (repaso):
 
 <img src="eda/img/arr_men.png" alt="" style="width: 45%; height: 50%; object-fit: fill">
 
@@ -294,14 +294,14 @@ Universidad de los Andes
 
 ### Gestión de memoria (2/2)
 
-- Single linked list en memoria:
+- Single Linked List en memoria:
 
 <img src="eda/img/sl_men.png" alt="" style="width: 45%; height: 50%; object-fit: fill">
 
 
 - Las letras representan el espacio no contiguo
 	- Ocupado por la lista enlazada simple
-- Las fechas representan los enlaces
+- Las fechas representan las referencias
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -323,9 +323,9 @@ Universidad de los Andes
 ### Array List  - Desventajas
 
   - Tamaño inicial fijo
-  - Redimensionamiento puede ser necesario
-      - Redimensionar duplica el uso de memoria durante expansión
-	      -  O(n)
+	  - Redimensionamiento y copiado puede ser necesario
+	      - Redimensionar duplica el uso de memoria durante expansión
+		      -  O(n)
 - Inserción y eliminación al inicio/internas costosas
 	- Por desplazamiento de elementos
 		- O(n)
@@ -349,11 +349,13 @@ Universidad de los Andes
 	    - Memoria extra para la referencia al siguiente
   - Acceso lento a elementos
 	- O(n)
-- Inserción y eliminación internas costosas
+- Inserción y eliminación internas (no al inicio) costosas
 	- O(n)
 - Si no tiene referencia a la cola
 	- La inserción al final es costosa
 		- O(n)
+- Eliminación al final costosa
+	- O (n)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -445,7 +447,7 @@ Universidad de los Andes
 
 
 - **TODO**
-		- Revisar la lista [documentación de single linked list](https://isis1225devs.github.io/ISIS1225-Structure-Documentation/DataStructures.List.html#module-DataStructures.List.single_linked_listl)
+		- Revisar la [documentación de single linked list](https://isis1225devs.github.io/ISIS1225-Structure-Documentation/DataStructures.List.html#module-DataStructures.List.single_linked_listl)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 

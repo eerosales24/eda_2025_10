@@ -105,7 +105,7 @@ Universidad de los Andes
 
 ### Primer intento
 
-- En un primer intento se usará una lista de Python​:
+- En un primer intento se usará una _lista de Python_ para implementar una lista​:
     
 	- `new_list()​`
 		- Retornará una lista de Python vacía​
@@ -160,7 +160,8 @@ def is_empty(lst):
 
 
 - Lista vacía​
-	- Por definición, una lista vacía es _falsy_ (se resuelve a `False`)
+	- Por definición, una lista vacía e
+		- _falsy_ (se resuelve a `False`)
 
 	<br>
 
@@ -199,13 +200,14 @@ def add_first(lst, elemento):
     return [elemento] + lst
 ```
 
-- Concatenar implica copiar todos los elementos a una nueva lista
+- Concatenar listas
+	- Implica copiar todos los elementos a una nueva lista
 
 	<br>
 
 
 - **¿Complejidad temporal?**
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->❌ **O(n)**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="1" --> **O(n)**
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -222,11 +224,14 @@ def add_first(lst, elemento):
 
 
 - **¿Complejidad temporal?**
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->❌ **O(n)**
+	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**O(n)**
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ### Complejidad temporal  - Listas
+
+- La complejidad de la inserción al inicio
+	- En una lista enlazada **no debería ser O(n)**
 
 <html lang="es">
 <head>
@@ -385,7 +390,7 @@ def is_empty(lst):
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-# ¿Cómo implementar `add_first`?
+# ¿Cómo implementar `add_first()`?
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -443,9 +448,11 @@ def new_single_node(element):
 ```
 
 - Cada nodo es un diccionario
-	- Con parejas llave-valor que modelan
-		- Los datos: `"info"`
-		- La referencia al siguiente nodo: `next`
+	- Con parejas llave-valor que modelan:
+		- Los datos: 
+			- `"info"`
+		- La referencia al siguiente nodo: 
+			- `next`
 	- Complejidad: 
 		- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(1)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
@@ -472,13 +479,31 @@ def get_element(node):
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `add_first()` (1/3)
+### `add_first()` (1/4)
 
 <img src="eda/img/sl_4.png" alt="" style="width: 50%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `add_first()` (2/3)
+### `add_first()` (2/4)
+
+- Comprendamos aún mejor lo que hará `add_first()`:
+
+<pre style="color: #006400; font-size: 11px;">
+>>> my_list = {"first": None, "last": None, "size": 0}
+>>> add_first(my_list, 10)  # Caso lista vacía, elemento int
+{'first': {'info': 10, 'next': None}, 'last': {'info': 10, 'next': None}, 'size': 1}
+    
+>>> add_first(my_list, 20)  # Caso agregar un 2do elemento int
+{'first': {'info': 20, 'next': {'info': 10, 'next': None}}, 'last': {'info': 10, 'next': None}, 'size': 2}
+    
+>>> add_first(my_list, "A")  # Caso agregar un 3er elemento str
+{'first': {'info': 'A', 'next': {'info': 20, 'next': {'info': 10, 'next': None}}}, 'last': {'info': 10, 'next': None}, 'size': 3}
+</pre>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `add_first()` (3/4)
 
 ```python
 def add_first(my_list, element):
@@ -491,8 +516,18 @@ def add_first(my_list, element):
     :type element: any
     :return: Lista actualizada.
     :rtype: dict
+
+    >>> my_list = {"first": None, "last": None, "size": 0}
+    >>> add_first(my_list, 10)  # Caso lista vacía, elemento int
+    {'first': {'info': 10, 'next': None}, 'last': {'info': 10, 'next': None}, 'size': 1}
+    
+    >>> add_first(my_list, 20)  # Caso agregar un 2do elemento int
+    {'first': {'info': 20, 'next': {'info': 10, 'next': None}}, 'last': {'info': 10, 'next': None}, 'size': 2}
+    
+    >>> add_first(my_list, "A")  # Caso agregar un 3er elemento str
+    {'first': {'info': 'A', 'next': {'info': 20, 'next': {'info': 10, 'next': None}}}, 'last': {'info': 10, 'next': None}, 'size': 3}
     """
-    new_node = node.new_single_node(element)
+    new_node = new_single_node(element)
     new_node["next"] = my_list["first"]
     my_list["first"] = new_node
 
@@ -501,7 +536,6 @@ def add_first(my_list, element):
 
     my_list["size"] += 1
     return my_list
-
 ```
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
@@ -511,7 +545,7 @@ def add_first(my_list, element):
 ```python
 def add_first(my_list, element):
     # Crea un nuevo nodo con el elemento:
-    new_node = node.new_single_node(element)
+    new_node = new_single_node(element)
     
     # Apunta el nuevo nodo a la cabeza (primer nodo):
     new_node["next"] = my_list["first"]
@@ -535,7 +569,7 @@ def add_first(my_list, element):
 ### `add_first()` - Complejidad temporal (1/3)
 
 - Crear un nuevo nodo
-	- `node.new_single_node(element)` → O(1)
+	- `new_single_node(element)` → O(1)
 - Actualizar punteros 
 	- `new_node["next"] = my_list["first"]` → O(1)
 - Actualizar referencia al primer nodo 
@@ -593,6 +627,20 @@ def add_last(my_list, element):
     :rtype: dict
     """
 ```
+
+
+<pre style="color: #006400; font-size: 12px;">
+>>> my_list = {"first": None, "last": None, "size": 0}
+>>> add_last(my_list, 10)  # Caso lista vacía, elemento int
+{'first': {'info': 10, 'next': None}, 'last': {'info': 10, 'next': None}, 'size': 1}
+    
+>>> add_last(my_list, 20)  # Caso agregar un 2do elemento int
+{'first': {'info': 10, 'next': {'info': 20, 'next': None}}, 'last': {'info': 20, 'next': None}, 'size': 2}
+    
+>>> add_last(my_list, "B")  # Caso agregar un 3er elemento str
+{'first': {'info': 10, 'next': {'info': 20, 'next': {'info': 'B', 'next': None}}}, 
+ 'last': {'info': 'B', 'next': None}, 'size': 3}
+</pre>
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -601,8 +649,8 @@ def add_last(my_list, element):
 ```python
     ...
     
-    # Crea un nuevo nodo con el elemento.
-    new_node = node.new_single_node(element)
+    # Crea un nuevo nodo con el elemento
+    new_node = new_single_node(element)
 
     # Si la lista está vacía, el nuevo nodo es el primero
     if my_list["size"] == 0:
@@ -610,7 +658,7 @@ def add_last(my_list, element):
     else:
         # Conecta la cola (último nodo) al nuevo nodo
         my_list["last"]["next"] = new_node
-
+    ...
 ```
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
@@ -627,49 +675,206 @@ def add_last(my_list, element):
     # Aumenta el tamaño de la lista.
     my_list["size"] += 1  
 
-    return my_list  # Retorna la lista actualizada.
+    return my_list  # Retorna la lista actualizada
 ```
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Ejercicio en clase: `get_element()`
+### Ejemplo de recorrido total de una lista enlazada simple
 
 ```python
-def get_element(lst, pos):
+def print_list_info(my_list):
     """
-	Obtiene el elemento en la posición ``pos`` de una lista simplemente enlazada.
-
-    Recorre la lista hasta la posición ``pos`` y retorna su contenido sin
-	modificar la lista. La posición debe ser un entero mayor o igual a 0 y menor 
-	que el tamaño de la lista. La lista no puede estar vacía.
+    Imprime la información de cada nodo en una lista simplemente enlazada.
 
     :param lst: Lista simplemente enlazada.
     :type lst: dict
+
+    :return: Muestra la información en pantalla.
+    :rtype: None
+    
+    >>> my_list = {"first": None, "last": None, "size": 0}
+    >>> print_list_info(my_list)
+
+    >>> my_list = {"first": {"info": 10, "next": {"info": 20, "next": {"info": 30, "next": None}}}, "size": 3}
+    >>> print_list_info(my_list)
+    10
+    20
+    30
+    """
+    if my_list["size"] > 0:
+        current_node = my_list["first"]
+        while current_node is not None:
+            print(current_node["info"])
+            current_node = current_node["next"]
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase: `get()`
+
+```python
+def get(my_list, pos):
+    """
+    Retorna el elemento en la posición ``pos`` de una lista simplemente enlazada.
+
+    Recorre la lista hasta la posición ``pos`` y retorna su contenido sin
+    modificar la lista. La posición debe ser un entero mayor o igual a 0 y menor 
+    que el tamaño de la lista. Si la lista está vacía o la posición es inválida, 
+    retorna ``None``.
+
+    :param my_list: Lista simplemente enlazada.
+    :type my_list: dict
     :param pos: Posición del elemento a obtener.
     :type pos: int
-    :return: Elemento en la posición ``pos``.
+    :return: Elemento en la posición ``pos`` o ``None`` si la lista está vacía o la posición es inválida.
     :rtype: any
     """
 ```
+
+<pre style="color: #006400; font-size: 13px;">
+    >>> empty_list = {"first": None, "size": 0}  # Caso lista vacía
+    >>> get(empty_list, 0) is None 
+    True
+
+    >>> empty_list = {"first": None, "size": 0}   # Caso posición no válida
+    >>> get(empty_list, 3)  is None 
+    True
+		
+    >>> my_list = {"first": {"info": 10, "next": {"info": 20, "next": {"info": 30, "next": None}}}, "size": 3}
+    >>> get(my_list, 0)  # Elemento inicial
+    10
+    >>> get(my_list, 1)  # Segundo elemento
+    20
+    >>> get(my_list, 2)  # Último elemento
+    30
+</pre>
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ### Ejercicio en clase: `get_element()` -  Tips
 
-- Inicialización:
-	- Se establece la posición de búsqueda en `1` y 
-		- Se apunta al primer nodo de la lista
-- Recorrido:
-	- Se avanza nodo por nodo hasta alcanzar la posición `pos`
-- Actualización:
-	- En cada iteración, se incrementa la posición y se mueve al siguiente nodo
-- Resultado: 
-	- Cuando se alcanza `pos`
-		- Se retorna la información almacenada en el nodo
+- **Validaciones**:
+	- Validar si la lista está vacía o la posición es inválida
+	
+- **Inicialización:**
+    - Se apunta al primer nodo de la lista
+    
+- **Recorrido:**
+    - Se avanza nodo por nodo hasta alcanzar la posición `pos`
+    
+- **Actualización:**
+    - En cada paso, se mueve al siguiente nodo
+    
+- **Resultado:**
+    - Al llegar a `pos`, se retorna la información del nodo
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase: `get_element()` - Solución (1/2)
+
+
+```python
+def get(my_list, pos):
+    """
+    Retorna el elemento en la posición ``pos`` de una lista simplemente enlazada.
+
+    Recorre la lista hasta la posición ``pos`` y retorna su contenido sin
+    modificar la lista. La posición debe ser un entero mayor o igual a 0 y menor 
+    que el tamaño de la lista. Si la lista está vacía o la posición es inválida, 
+    retorna ``None``.
+
+    :param my_list: Lista simplemente enlazada.
+    :type my_list: dict
+    :param pos: Posición del elemento a obtener.
+    :type pos: int
+    :return: Elemento en la posición ``pos`` o ``None`` si la lista está vacía o la posición es inválida.
+    :rtype: any
+
+    >>> empty_list = {"first": None, "size": 0}  # Caso lista vacía
+    >>> get(empty_list, 0) is None 
+    True
+
+    >>> empty_list = {"first": None, "size": 0}   # Caso posición inválida
+    >>> get(empty_list, 3)  is None 
+    True
+		
+    >>> my_list = {"first": {"info": 10, "next": {"info": 20, "next": {"info": 30, "next": None}}}, "size": 3}
+    >>> get(my_list, 0)  # Elemento inicial
+    10
+    >>> get(my_list, 1)  # Segundo elemento
+    20
+    >>> get(my_list, 2)  # Último elemento
+    30
+    """
+    result = None
+
+    if my_list["first"] is not None and 0 <= pos < my_list["size"]:
+        current_node = my_list["first"]
+        index = 0
+
+        while index < pos:
+            current_node = current_node["next"]
+            index += 1
+        
+        result = current_node["info"]
+
+    return result
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase: `get_element()` - Solución (2/2)
+
+```python
+def get(my_list, pos):
+    """
+    Retorna el elemento en la posición ``pos`` de una lista simplemente enlazada.
+
+    Recorre la lista hasta la posición ``pos`` y retorna su contenido sin
+    modificar la lista. La posición debe ser un entero mayor o igual a 0 y menor 
+    que el tamaño de la lista. Si la lista está vacía o la posición es inválida, 
+    retorna ``None``.
+
+    :param my_list: Lista simplemente enlazada.
+    :type my_list: dict
+    :param pos: Posición del elemento a obtener.
+    :type pos: int
+    :return: Elemento en la posición ``pos`` o ``None`` si la lista está vacía o la posición es inválida.
+    :rtype: any
+
+    >>> empty_list = {"first": None, "size": 0}  # Caso lista vacía
+    >>> get(empty_list, 0) is None 
+    True
+
+    >>> empty_list = {"first": None, "size": 0}   # Caso posición inválida
+    >>> get(empty_list, 3) is None 
+    True
+		
+    >>> my_list = {"first": {"info": 10, "next": {"info": 20, "next": {"info": 30, "next": None}}}, "size": 3}
+    >>> get(my_list, 0)  # Elemento inicial
+    10
+    >>> get(my_list, 1)  # Segundo elemento
+    20
+    >>> get(my_list, 2)  # Último elemento
+    30
+    """
+    result = None
+
+    if my_list["first"] is not None and 0 <= pos < my_list["size"]:
+        current_node = my_list["first"]
+        for _ in range(pos):
+            current_node = current_node["next"]
+        result = current_node["info"]
+
+    return result
+```
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 <i class="fas fa-question-circle fa-2x fa-spin fa-4x"></i>
+
+
 
 
 
