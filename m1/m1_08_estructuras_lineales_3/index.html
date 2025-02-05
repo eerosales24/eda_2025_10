@@ -317,7 +317,7 @@ def add_first(lst, elemento):
 
 ### Segundo intento
 
-- En un segundo intento se usará un diccionario de Python​:
+- En un segundo intento se usará un **diccionario** de Python​:
     
 	- `new_list()​`
 		- Retornará `None` para representar a una lista vacía​
@@ -325,7 +325,7 @@ def add_first(lst, elemento):
 	- `is_empty()​`
 		- Informará si se trata de una lista vacía​
     
-	- `add(lst, elemento)​`
+	- `add_first(lst, elemento)​`
 		- Añadirá un elemento al inicio de la lista
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
@@ -773,13 +773,15 @@ def get(my_list, pos):
 
 ### Ejercicio en clase: `get_element()` - Solución (1/2)
 
+- O(n):
 
 ```python
 def get(my_list, pos):
     """
-    Retorna el elemento en la posición ``pos`` de una lista simplemente enlazada.
+    Retorna la información del elemento en la posición ``pos`` de una 
+	lista simplemente enlazada.
 
-    Recorre la lista hasta la posición ``pos`` y retorna su contenido sin
+    Recorre la lista hasta la posición ``pos`` y retorna su información sin
     modificar la lista. La posición debe ser un entero mayor o igual a 0 y menor 
     que el tamaño de la lista. Si la lista está vacía o la posición es inválida, 
     retorna ``None``.
@@ -826,12 +828,15 @@ def get(my_list, pos):
 
 ### Ejercicio en clase: `get_element()` - Solución (2/2)
 
+- O(n):
+
 ```python
 def get(my_list, pos):
     """
-    Retorna el elemento en la posición ``pos`` de una lista simplemente enlazada.
+    Retorna la información del elemento en la posición ``pos`` de una 
+	lista simplemente enlazada.
 
-    Recorre la lista hasta la posición ``pos`` y retorna su contenido sin
+    Recorre la lista hasta la posición ``pos`` y retorna su información sin
     modificar la lista. La posición debe ser un entero mayor o igual a 0 y menor 
     que el tamaño de la lista. Si la lista está vacía o la posición es inválida, 
     retorna ``None``.
