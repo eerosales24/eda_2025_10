@@ -89,7 +89,7 @@
 
 ### Estructuras de Datos y Algoritmos
 
-#### *Estructuras de Datos Lineales IV*
+#### *Pilas y colas*
 
 [Eduardo Rosales](mailto:ee.rosales24@uniandes.edu.co)
 
@@ -99,395 +99,220 @@ Universidad de los Andes
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Lista doblemente enlazada simple - Double Linked List
+### Pila (Stack) (1/2)
 
-- Cada nodo tiene referencias al nodo anterior y al siguiente​
+- Estructura de datos con comportamiento LIFO
+	- Último en entrar, primero en salir (Last In, First Out)
+
+<img src="Pasted image 20250126111839.png" alt="" style="width: 50%; height: 35%; object-fit: fill">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Pila (Stack) (2/2)
+
+- Principales operaciones:​
+	- **Push**​:
+		- Añade un elemento al tope​
+	- **Pop**:
+		- Remueve y retorna elemento del tope
+	- **Top**:
+		- Consulta el elemento del tope
+
+<img src="Pasted image 20250126111839.png" alt="" style="width: 40%; height: 25%; object-fit: fill">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `push()`
+
+- Añade un elemento al tope​
+
+<img src="eda/img/push.png" alt="" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `pop()`
+
+-  Remueve y retorna elemento del tope
+
+<img src="eda/img/pop.png" alt="" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `top()`
+
+- Consulta el elemento del tope
+	- Sin removerlo
+
+<img src="eda/img/top.png" alt="" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplos de pilas (1/2)
+
+- Historial de navegación en navegadores Web
     
-- Introduce mayor flexibilidad operativa ​
+    - Se usa una pila para almacenar las direcciones de los sitios visitados
+    - Cada nuevo sitio se hace incluye en la pila
+    - El botón "atrás" permite consultar sitios previos en la pila
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplos de pilas (2/2)
+
+- Función de "deshacer" en editores de texto
     
-	- Con referencias `"prev"` (anterior) y `"next"` (siguiente)
+    - Las acciones de edición se almacenan en una pila
+    - Al presionar "deshacer", se revierte la última acción tomada
+    - Se pueden recuperar estados previos del documento en orden inverso
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Doble enlazamiento
+### List – API
 
-<img src="eda/img/dl_1.png" alt="" style="object-fit: scale-down">
+
+- **TODO**
+		- Revisar la [documentación de Stack](https://isis1225devs.github.io/ISIS1225-Structure-Documentation/DataStructures.Stack.html)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Centinela
+### El TAD Pila
 
-- Nodo artificial cuyo único propósito es simplificar casos especiales
-	- Establece el límite de una lista
-- No almacena datos
-- Permanecen inmutables
-	- Solo cambian los nodos intermedios
-- Son opcionales
-- Ventajas:
-	- Simplifican la lógica de implementación
-		 - Inserción y borrado
-			- Siempre serán entre nodos existentes
+<img src="eda/img/tad_pila.png" alt="" style="width: 50%; height: 60%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Complejidad temporal de la lista enlazada simple
+### Implementación de una Pila en Python - Usando una Lista
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Acceso  (1/2)
+### ¿Cuál sería la complejidad temporal de cada operación?
 
-
-<img src="eda/img/dl_2.png" alt="" style="width: 80%; height: 20%; object-fit: fill">
-
-
-  - Acceso secuencial
-	  - Debe recorrerse nodo por nodo desde la cabeza
-  - Sin índices directos
-      - No hay acceso inmediato a un nodo específico
+<img src="eda/img/stack_lista.png" alt="" style="width: 50%; height: 35%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Acceso  (2/2)
+### `push()`
 
+- Agregar al final de una lista (no hay desplazamiento)
+	- En una lista de Python es una operación constante - O(1)
 
-<img src="eda/img/dl_2.png" alt="" style="width: 80%; height: 20%; object-fit: fill">
-
-
-
-  - El tiempo de acceso aumenta con el tamaño de la lista
-	  - En el peor caso, se visita cada nodo una vez
-		  - Complejidad:
-			- &shy;<!-- .element: class="fragment" data-fragment-index="1" --> O(n)
+<img src="eda/img/stack_lista.png" alt="" style="width: 30%; height: 20%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Inserción al inicio (1/2)
+### `pop()`
 
-<img src="eda/img/dl_3.png" alt="" style="width: 65%; height: 50%; object-fit: fill">
+- Eliminar al final de una lista (no hay desplazamiento)
+	- En una lista de Python es una operación constante - O(1)
+
+<img src="eda/img/stack_lista.png" alt="" style="width: 30%; height: 20%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Inserción al inicio (2/2)
+### `top()`
 
-- Acceso inmediato al nodo centinela header
-- Inserción directa después del header
--  Operación rápida e independiente del número de nodos
-	- Complejidad:
-    	- &shy;<!-- .element: class="fragment" data-fragment-index="1" --> O(1)
+- Acceso al final de una lista (no hay desplazamiento)
+	- En una lista de Python es una operación constante - O(1)
+
+<img src="eda/img/stack_lista.png" alt="" style="width: 30%; height: 20%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Eliminación al inicio
+### `is_empty()`
 
-- Acceso inmediato al nodo centinela header
-- Eliminación inmediata del nodo después del header
-- Operación rápida e independiente del número de nodos
-	- Complejidad:
-    	- &shy;<!-- .element: class="fragment" data-fragment-index="1" --> O(1)
+- `len()` opera en tiempo constante - O(1)
+- Una comparación es una operación constante - O(1)
+
+<img src="eda/img/stack_lista.png" alt="" style="width: 30%; height: 20%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-###  Inserción interna
+### `size()`
 
-<img src="eda/img/dl_4.png" alt="" style="object-fit: scale-down">
+- `len()` opera en tiempo constante - O(1)
+
+<img src="eda/img/stack_lista.png" alt="" style="width: 30%; height: 20%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-###  Eliminación interna
+<img src="eda/img/pila_comp.png" alt="" style="width: 40%; height: 30%; object-fit: fill">
 
 
-<img src="eda/img/dl_5.png" alt="" style="object-fit: scale-down">
+\* Amortizado:
+- El costo de push (`list.append()`) puede ser O(n) ocasionalmente
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-###  Inserción/Eliminación interna
+### Cola (Queue) (1/2)
 
-- Inserción/Eliminación interna
-	- Puede requerir recorrer hasta el nodo previo 
-		- Al punto de inserción/eliminación
-- Sin acceso directo
-	- Se necesita navegar desde el header
-		- Hasta la posición deseada
-- El tiempo aumenta con la posición en la lista
-	- En el peor caso, implica visitar n nodos 
-		- Complejidad:
-			- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(n)
+- Estructura de datos con comportamiento FIFO
+	- Primero en entrar, primero en salir (First In, First Out)
+
+<img src="eda/img/cola_1.png" alt="" style="width: 40%; height: 43%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Inserción al final
+### Cola (Queue) (2/2)
 
-
-- Acceso inmediato al centinela trailer
-- Inserción directa antes del trailer
-  - Operación rápida e independiente del número de nodos
-	  - Complejidad:
-    	- &shy;<!-- .element: class="fragment" data-fragment-index="1" --> O(1)
+- Principales operaciones:​
+	- **Enqueue**:
+		- Añade un elemento al final
+	- **Dequeue**:
+		- Remueve y retorna elemento del frente
+	- **Peek**:
+		- Consulta el elemento del primer elemento
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Eliminación al final
+### Enqueue
 
-- Acceso inmediato al centinela trailer
-- Eliminación directa del nodo antes del trailer
-  - Operación rápida e independiente del número de nodos
-	  - Complejidad:
-    	- &shy;<!-- .element: class="fragment" data-fragment-index="1" --> O(1)
+<img src="eda/img/encolar.png" alt="" style="width: 60%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Complejidad temporal - Listas
+### Dequeue
 
-<html lang="es"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">  <style> body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; } table { width: 100%; border-collapse: collapse; text-align: center; background-color: white; border-radius: 8px; overflow: hidden; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); } th, td { border: 1px solid black; padding: 10px; } th { background-color: #cfe2f3; /* Color del encabezado */ font-weight: bold; } td:first-child { font-weight: bold; } tr:nth-child(even) { background-color: #f9f9f9; } tr:hover { background-color: #f1f1f1; } </style> </head> <body> <table> <tr> <th>Estructura de datos</th> <th>Acceso</th> <th>Inserción al inicio</th> <th>Eliminación al inicio</th> <th>Inserción al final</th> <th>Eliminación al final</th> <th>Inserción/Eliminación interna</th> </tr> <tr> <td>Array List</td> <td><b>O(1)</b></td> <td>O(n)</td> <td>O(n)</td> <td><b>O(1)*</b></td> <td><b>O(1)<b></td> <td>O(n)</td> </tr> <tr> <td>Single Linked List</td> <td>O(n)</td> <td><b>O(1)</b></td> <td><b>O(1)</b></td> <td>O(n)**</td> <td>O(n)</td> <td>O(n)</td> </tr> <tr> <td>Head-Tail List</td> <td>O(n)</td> <td><b>O(1)</b></td> <td><b>O(1)</b></td> <td><b>O(1)</b></td> <td>O(n)</td> <td>O(n)</td> </tr> <tr> <td>Double Linked List</td> <td>O(n)</td> <td><b>O(1)</b></td> <td><b>O(1)</b></td> <td><b>O(1)</b></td> <td><b>O(1)</b></td> <td>O(n)</td> </tr> </table> </body> </html>
-
- \* Amortizado
- 
- \*\* Si  no hay una referencia a la cola (no es un head-tail list), se debe recorrer todos los nodos para insertar al final
+<img src="eda/img/desencolar.png" alt="" style="width: 60%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Lista circular (1/2)
+### Peek
 
-- Cada nodo apunta a otro nodo
-	- Formando un ciclo cerrado
-- No hay un nodo apuntando a `None` 
-	- El último nodo apunta al primero
+<img src="eda/img/peek.png" alt="" style="width: 60%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Lista circular (2/2)
+### Ejemplos de colas (1/2)
 
-<img src="eda/img/cl.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Características
-
-- Puede ser **simplemente** o **doblemente** enlazada
-- Al no tener inicio o fin fijos
-	- Se puede recorrer de forma circular infinita
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Lista Circular Simple - Circular Singly Linked List
-
-- Cada nodo tiene un único puntero al siguiente nodo
-	- El último nodo apunta al primero
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Complejidad temporal de la lista circular simple
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Acceso
-
-- No existe acceso directo  
-- Es necesario recorrer nodos hasta encontrar el deseado  
-- Complejidad en el peor caso: 
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(n)
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Inserción al inicio
-
-- Se asume un puntero al último nodo (`tail`)  :
-	1. Enlazar el nuevo nodo con el "primero" (`tail->next`)  
-	2. Actualizar `tail->next` para que apunte al nuevo nodo  
-	3. Si la lista estaba vacía, el nuevo nodo se autoapunta  
-- Complejidad: 
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(1)
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Eliminación al inicio
-
-- Se asume un puntero al último nodo (`tail`)  :
-	1. Si la lista tiene solo un nodo
-		- Se marca `tail` como vacío  
-	2. Si hay más nodos
-		- `tail->next` se actualiza al segundo nodo  
-- Complejidad: 
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(1)
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Inserción interna
-
-- Se localiza el nodo anterior a la posición deseada  
-- Se ajustan los punteros del nodo anterior y del nuevo nodo  
-- Complejidad: 
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(n) (por la búsqueda del punto de inserción)
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Eliminación interna
-
-- Se localiza el nodo a eliminar (o su anterior)  
-- Se reconfiguran los punteros para mantener la circularidad  
-- Complejidad: 
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(n)
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Inserción al final
-
-- Se asume un puntero al último nodo (`tail`) :
-	1. Apuntar el nuevo nodo hacia `tail->next` (nodo "primero")  
-	2. Actualizar `tail->next` para que apunte al nuevo nodo  
-	3. `tail` pasa a ser el nuevo nodo  
-- Complejidad: 
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(1)
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Eliminación al final
-
-- Se asume un puntero al último nodo (`tail`)  :
-	1. Encontrar el nodo anterior a `tail` 
-		- Recorriendo hasta que `nodo->next == tail`
-	2. Actualizar `tail` al nodo anterior 
-		- y enlazarlo con el "primero" (`tail->next`)  
-- Complejidad: 
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(n)
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Lista Circular Doble - Circular Doubly Linked List
-
-- Cada nodo tiene dos punteros: 
-    - `"next"` (siguiente)
-    - `"prev"` (anterior)
-- El último nodo apunta al primero y viceversa
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Complejidad temporal de la lista circular doble
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Eliminación al final
-
-- Con un puntero al último nodo (`tail`)  
-	1. Si solo hay un nodo
-		- La lista queda vacía  
-	2. Si hay más de uno, 
-		- Se ajustan `tail->prev->next` y 
-		- `head->prev` (o el puntero a `tail`)
-- Complejidad: 
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**O(1)**
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Estructuras circulares -  Comparación de complejidades
-
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      padding: 20px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: center;
-      background-color: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    th, td {
-      border: 1px solid black;
-      padding: 10px;
-    }
-    th {
-      background-color: #cfe2f3; /* Header color */
-      font-weight: bold;
-    }
-    td:first-child {
-      font-weight: bold;
-    }
-    tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-    tr:hover {
-      background-color: #f1f1f1;
-    }
-  </style>
-</head>
-<body>
-  <table>
-    <tr>
-      <th>Estructura circular</th>
-<th>Acceso</th> <th>Inserción al inicio</th> <th>Eliminación al inicio</th> <th>Inserción al final</th> <th>Eliminación al final</th> <th>Inserción/ Eliminación interna</th>
-    </tr>
-    <tr>
-      <td>Array List</td>
-      <td><b>O(1)</b></td>
-      <td>O(n)</td>
-      <td>O(n)</td>
-      <td><b>O(1)*</b></td>
-      <td><b>O(1)*</b></td>
-      <td>O(n)</td>
-    </tr>
-    <tr>
-      <td>Singly Linked List (Head-Tail)</td>
-      <td>O(n)</td>
-      <td><b>O(1)</b></td>
-      <td><b>O(1)</b></td>
-      <td><b>O(1)<b></td>
-      <td>O(n)</td>
-      <td>O(n)</td>
-    </tr>
-    <tr>
-      <td>Doubly Linked List</td>
-      <td>O(n)</td>
-      <td><b>O(1)</b></td>
-      <td><b>O(1)</b></td>
-      <td><b>O(1)</b></td>
-      <td><b>O(1)</b></td>
-      <td>O(n)</td>
-    </tr>
-    <tr>
-      <td>Circular Singly Linked List</td>
-      <td>O(n)</td>
-      <td><b>O(1)</b></td>
-      <td><b>O(1)</b></td>
-      <td><b>O(1)</b></td>
-      <td>O(n)</td>
-      <td>O(n)</td>
-    </tr>
-    <tr>
-      <td>Circular Doubly Linked List</td>
-      <td>O(n)</td>
-      <td><b>O(1)</b></td>
-      <td><b>O(1)</b></td>
-      <td><b>O(1)</b></td>
-      <td><b>O(1)</b></td>
-      <td>O(n)</td>
-    </tr>
-  </table>
-</body>
-</html>
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Lista doblemente enlazada vs Lista circular doble
-
-- Navegación continua 
-	- Lista doble: Se debe reiniciar manualmente
-    - Lista circular doble: Permite recorrido continuo
-	    - Útil en buffers, planificación, videojuegos
-
-- Misma complejidad, diferente utilidad
+- Impresión de documentos en una impresora
     
-    - Eficiencia igual
-    - Navegación cíclica sin reinicios:
-	    - Lista circular doble
+    - Los documentos enviados a imprimir se encolan en un pool de impresión
+    - Se procesan en orden de llegada (FIFO: First In, First Out)
+    - Los documentos se imprimen uno por uno hasta que la cola queda vacía
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplos de colas (2/2)
+
+- Atención en un centro de llamadas
+    
+    - Las llamadas de los clientes se encolan en un sistema de espera
+    - Se atienden en el orden en que fueron recibidas (FIFO)
+    - Los agentes atienden a los clientes de la cola a medida que quedan disponibles
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### List – API
+
+
+- **TODO**
+		- Revisar la [documentación de Queue](https://isis1225devs.github.io/ISIS1225-Structure-Documentation/DataStructures.Queue.html)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### El TAD Cola
+
+<img src="eda/img/tad_cola.png" alt="" style="object-fit: scale-down">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 

@@ -320,7 +320,8 @@ def add_first(lst, elemento):
 - En un segundo intento se usará un **diccionario** de Python​:
     
 	- `new_list()​`
-		- Retornará un diccionario representando a una lista de Python vacía​
+		- Retornará un diccionario 
+			- Representando a una lista de Python vacía​
     
 	- `is_empty()​`
 		- Informará si se trata de una lista vacía​
@@ -625,7 +626,6 @@ def add_last(my_list, element):
     :type element: any
     :return: Lista actualizada.
     :rtype: dict
-    """
 ```
 
 
@@ -711,7 +711,26 @@ def print_list_info(my_list):
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Ejercicio en clase: `get()`
+### Ejercicio en clase: `get()` -  Tips
+
+- **Validaciones**:
+	- Validar si la lista está vacía o la posición es inválida
+	
+- **Inicialización:**
+    - Se apunta al primer nodo de la lista
+    
+- **Recorrido:**
+    - Se avanza nodo por nodo hasta alcanzar la posición `pos`
+    
+- **Actualización:**
+    - En cada paso, se mueve al siguiente nodo
+    
+- **Resultado:**
+    - Al llegar a `pos`, se retorna la información del nodo
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase: `get()` - docstring/doctests
 
 ```python
 def get(my_list, pos):
@@ -729,7 +748,6 @@ def get(my_list, pos):
     :type pos: int
     :return: Elemento en la posición ``pos`` o ``None`` si la lista está vacía o la posición es inválida.
     :rtype: any
-    """
 ```
 
 <pre style="color: #006400; font-size: 13px;">
@@ -749,25 +767,6 @@ def get(my_list, pos):
     >>> get(my_list, 2)  # Último elemento
     30
 </pre>
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejercicio en clase: `get()` -  Tips
-
-- **Validaciones**:
-	- Validar si la lista está vacía o la posición es inválida
-	
-- **Inicialización:**
-    - Se apunta al primer nodo de la lista
-    
-- **Recorrido:**
-    - Se avanza nodo por nodo hasta alcanzar la posición `pos`
-    
-- **Actualización:**
-    - En cada paso, se mueve al siguiente nodo
-    
-- **Resultado:**
-    - Al llegar a `pos`, se retorna la información del nodo
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -874,6 +873,243 @@ def get(my_list, pos):
 
     return result
 ```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase: `remove_first()`
+
+
+<img src="eda/img/sl_6.png" alt="" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase: `remove_first()` - Tips
+
+- **Validaciones:**
+    - Verificar si la lista está vacía
+    
+- **Eliminación del primer nodo:**
+    - Guardar la información del nodo a eliminar
+    - Apuntar `"first"` al siguiente nodo de la lista
+    
+- **Actualización de la estructura:**
+    - Reducir el tamaño de la lista
+    - Si la lista queda vacía
+	    - Actualizar `last` a `None`
+	    
+- **Resultado:**
+    - Retornar la información (`info`) del nodo eliminado
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase: `remove_first()` - docstring/doctests
+
+```python
+def remove_first(my_list):
+    """
+    Elimina y retorna la información del primer elemento de una lista
+	simplemente enlazada.
+    
+    Si la lista está vacía, retorna None. Actualiza las referencias y 
+	el tamaño de la lista.
+
+    :param my_list: Lista simplemente enlazada.
+    :type my_list: dict
+    :return: Valor del primer nodo eliminado o None si la lista está vacía.
+    :rtype: any
+```
+
+<pre style="color: #006400; font-size: 13px;">
+    >>> empty_list = {"first": None, "last": None, "size": 0}  # Caso lista vacía
+    >>> remove_first(empty_list) is None
+    True
+    >>> empty_list  # Verifica que la estructura no cambió
+    {'first': None, 'last': None, 'size': 0}
+
+    >>> one_element_list = {"first": {"info": 10, "next": None}, "last": {"info": 10, "next": None}, "size": 1}
+    >>> remove_first(one_element_list)  # Caso lista con un solo elemento
+    10
+    >>> one_element_list  # Verifica que la lista queda vacía
+    {'first': None, 'last': None, 'size': 0}
+
+    >>> multi_element_list = {
+    ...     "first": {"info": 5, "next": {"info": 15, "next": {"info": 25, "next": None}}}, 
+    ...     "last": {"info": 25, "next": None}, 
+    ...     "size": 3
+    ... }
+    >>> remove_first(multi_element_list)  # Caso con varios elementos
+    5
+    >>> multi_element_list  # Verifica que la lista se actualiza correctamente
+    {'first': {'info': 15, 'next': {'info': 25, 'next': None}}, 'last': {'info': 25, 'next': None}, 'size': 2}
+</pre>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase: `remove_first()` - Solución (1/2)
+
+```python
+def remove_first(my_list):
+    removed_info = None
+
+    if my_list["size"] > 0:
+        node = my_list["first"]
+        removed_info = node["info"]
+        
+        # Mueve el puntero al siguiente nodo:
+        my_list["first"] = node["next"]  
+        my_list["size"] -= 1
+    ...
+		
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase: `remove_first()` - Solución (2/2)
+
+```python
+def remove_first(my_list):
+        ...
+
+        if my_list["size"] == 0:
+            # Si la lista queda vacía, actualizar "last":
+            my_list["last"] = None  
+
+    return removed_info  # Retorna el valor eliminado o None si estaba vacía
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### ¿Cuál es la complejidad temporal de `remove_first()`?
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `remove_first()` - Complejidad temporal
+
+- Verificación de lista vacía 
+	- `if my_list["size"] == 0:` → O(1)
+- Acceder al primer nodo
+	- `node = my_list["first"]` → O(1)
+- Actualizar `first`
+	- `my_list["first"] = node["next"]` → O(1)
+- Actualizar tamaño
+	- `my_list["size"] -= 1` → O(1)
+- Actualizar `last` si la lista queda vacía
+	- `if my_list["size"] == 0: my_list["last"] = None` → O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase: `remove_last()` - docstring/doctests
+
+```python
+def remove_last(my_list):
+    """
+    Elimina y retorna la información del último elemento de una lista
+	simplemente enlazada.
+
+    Si la lista está vacía, retorna None. Si la lista tiene un solo elemento, 
+    se reutiliza `remove_first()` para evitar duplicación de código. 
+    De lo contrario, se recorre la lista para encontrar el penúltimo nodo 
+    y actualizar `last`.
+
+    :param my_list: Lista simplemente enlazada.
+    :type my_list: dict
+    :return: Valor del nodo eliminado o None si la lista está vacía.
+    :rtype: any
+```
+
+<pre style="color: #006400; font-size: 13px;">
+    >>> empty_list = {"first": None, "last": None, "size": 0}  # Caso lista vacía
+    >>> remove_last(empty_list) is None
+    True
+    >>> empty_list  # Verifica que la estructura no cambió
+    {'first': None, 'last': None, 'size': 0}
+
+    >>> one_element_list = {"first": {"info": 10, "next": None}, "last": {"info": 10, "next": None}, "size": 1}
+    >>> remove_last(one_element_list)  # Caso con un solo elemento (debe usar remove_first)
+    10
+    >>> one_element_list  # Verifica que la lista queda vacía
+    {'first': None, 'last': None, 'size': 0}
+
+    >>> multi_element_list = {
+    ...     "first": {"info": 5, "next": {"info": 15, "next": {"info": 25, "next": None}}}, 
+    ...     "last": {"info": 25, "next": None}, 
+    ...     "size": 3
+    ... }
+    >>> remove_last(multi_element_list)  # Caso con varios elementos
+    25
+    >>> multi_element_list  # Verifica que el nuevo último nodo es el penúltimo original
+    {'first': {'info': 5, 'next': {'info': 15, 'next': None}}, 'last': {'info': 15, 'next': None}, 'size': 2}
+</pre>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase: `remove_last()` - Solución (1/2)
+
+```python
+def remove_last(my_list):
+    removed_info = None
+
+    if my_list["size"] > 0:
+        if my_list["first"] == my_list["last"]:
+            # Caso de un solo elemento, reutiliza código:
+            removed_info = remove_first(my_list)  
+        else:
+            current = my_list["first"]
+            # Recorre hasta el penúltimo nodo:
+            while current["next"] != my_list["last"]:
+                current = current["next"]  
+    ...
+		
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase: `remove_last()` - Solución (2/2)
+
+```python
+def remove_last(my_list):
+        ...
+            removed_info = my_list["last"]["info"]
+            my_list["last"] = current
+            my_list["last"]["next"] = None
+            my_list["size"] -= 1
+
+    return removed_info
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### ¿Cuál es la complejidad temporal de `remove_last()`?
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `remove_last()` - Complejidad temporal (1/2)
+
+- Verificación de lista vacía
+    - `if my_list["size"] == 0:` → O(1)
+
+- Caso especial: Lista con un solo elemento
+    - `if my_list["first"] == my_list["last"]:` → O(1)
+    - `remove_first(my_list)` (llamada a función `remove_first()`) → O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `remove_last()` - Complejidad temporal (2/2)
+
+- Recorrer la lista hasta el penúltimo nodo
+	- `while current["next"] != my_list["last"]:` → **O(n)**  
+
+- Actualizar `last`
+	- `my_list["last"] = current` → O(1)
+
+- Desconectar el último nodo
+	- `my_list["last"]["next"] = None` → O(1)
+
+- Actualizar tamaño de la lista
+	- `my_list["size"] -= 1` → O(1)
+
+- Retornar el valor eliminado
+	- `return removed_info` → O(1)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
