@@ -231,7 +231,12 @@ Universidad de los Andes
 
 - `len()` opera en tiempo constante - O(1)
 
+
+
 <img src="eda/img/stack_lista.png" alt="" style="width: 30%; height: 20%; object-fit: fill">
+
+
+<!-- .slide: class="has-light-background" data-background-color="#f8f8f8" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -260,19 +265,19 @@ Universidad de los Andes
 	- **Dequeue**:
 		- Remueve y retorna elemento del frente
 	- **Peek**:
-		- Consulta el elemento del primer elemento
+		- Consulta y retorna elemento del frente
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ### Enqueue
 
-<img src="eda/img/encolar.png" alt="" style="width: 60%; height: 50%; object-fit: fill">
+<img src="eda/img/encolar.png" alt="" style="width: 60%; height: 45%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ### Dequeue
 
-<img src="eda/img/desencolar.png" alt="" style="width: 60%; height: 50%; object-fit: fill">
+<img src="eda/img/desencolar.png" alt="" style="width: 60%; height: 48%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -313,6 +318,997 @@ Universidad de los Andes
 ### El TAD Cola
 
 <img src="eda/img/tad_cola.png" alt="" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Implementación de una Cola en Python - Usando una Lista
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `enqueue()`
+
+- Agregar al final de una lista (`list.append()`)
+    - En una lista de Python es una operación constante - O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `peek()`
+
+- Acceso al inicio de una lista (`lista[0]`)
+    - En una lista de Python es una operación constante - O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## `is_empty()`
+
+- `len()` opera en tiempo constante - O(1)
+    
+- Una comparación es una operación constante - O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `size()`
+
+- `len()` opera en tiempo constante - O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `dequeue()`
+
+- Eliminar al inicio de una lista:
+
+```python
+pop(0)
+
+del lista[0]
+```
+    
+- Se requiere desplazar todos los elementos
+	
+ ❌ En una lista de Python es una operación lineal - O(n)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Implementación de una pila
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+###  Implementación de una pila usando un arreglo (1/2)
+
+- Sea `array_list` 
+	- La implementación de un arreglo
+- Sea `arr` 
+	- El alias usado para importar esa implementación
+	
+<br>
+
+- Se asume que `array_list` soporta las siguiente operaciones:
+<html lang="es"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Tabla de Estructuras de Datos</title> <style> table { width: 100%; border-collapse: collapse; } th { border: 2px solid black; padding: 10px; text-align: center; background-color: #D7ECFC; /* Fondo azul claro para encabezados */ font-weight: bold; font-size: 18px; } td { border-left: 2px solid black; border-right: 2px solid black; border-top: 2px solid black; padding: 10px; text-align: center; background-color: white; /* Fondo blanco para la segunda fila */ } tr:last-child td { border-bottom: 2px solid black; /* Línea negra en la última fila */ } </style> </head> <body> <table> <tr> <th>Estructura de datos</th> <th>Acceso</th> <th>Inserción al inicio</th> <th>Eliminación al inicio</th> <th>Inserción al final</th> <th>Eliminación al final</th> <th>Inserción/Eliminación interna</th> </tr> <tr> <td>Array List</td> <td>O(1)</td> <td>O(n)</td> <td>O(n)</td> <td>O(1)*</td> <td>O(1)*</td> <td>O(n)</td> </tr> </table> </body> </html>
+
+ \* **Costo amortizado**
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `new_stack()`
+
+```python
+def new_stack():
+    """
+    Crea una pila vacía.
+
+    :returns: Una pila vacía.
+    :rtype: stack
+    """
+    return arr.new_list()
+```
+
+- Complejidad:
+	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `size()`
+
+- Es solo un wrapper de: `array_list.size()`
+
+```python
+def size(my_stack):
+    """
+    Retorna el número de elementos en la pila.
+
+    :param my_stack: La pila a examinar.
+    :type my_stack: stack
+
+    :returns: El número de elementos en la pila.
+    :rtype: int
+    """
+    return arr.size(my_stack)
+```
+- Complejidad:
+  - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `is_empty()`
+
+- Es solo un wrapper de: `array_list.is_empty()`
+
+```python
+def is_empty(my_stack):
+    """
+    Verifica si la pila está vacía.
+
+    :param my_stack: La pila a examinar.
+    :type my_stack: stack
+
+    :returns: True si la pila está vacía, False en caso contrario.
+    :rtype: bool
+    """
+    return arr.is_empty(my_stack)
+```
+- Complejidad:
+  - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `push()`
+
+```python
+def push(my_stack, element):
+    """
+    Apila el elemento dado (lo agrega en el tope/final).
+
+    :param my_stack: La pila donde se apilará el elemento.
+    :param element: El elemento a apilar.
+    :type element: any
+
+    :returns: La pila modificada.
+    :rtype: stack
+    """
+    # TODO1: Implementar la función push()
+```
+- ¿Qué función del API de arreglo serviría?
+  - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->`array_list.add_last()`
+- Complejidad:
+  - &shy;<!-- .element: class="fragment" data-fragment-index="2" -->O(1) (amortizada)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `pop()`
+
+```python
+def pop(my_stack):
+    """
+    Retorna y elimina el elemento presente en el tope de la pila (último).
+    Si la pila está vacía, retorna None.
+
+    :param my_stack: La pila de donde se retirará el elemento.
+    :type my_stack: stack
+
+    :returns: El elemento del tope de la pila.
+    :rtype: any
+    """
+    # TODO2: Implementar la función pop()
+```
+
+- ¿Qué función del API de arreglo serviría?
+  - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->`array_list.remove_last()`
+- Complejidad:
+  - &shy;<!-- .element: class="fragment" data-fragment-index="2" -->O(1) (amortizada)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `top()`
+
+```python
+def top(my_stack):
+    """
+    Retorna el elemento en tope de la pila (último), sin eliminarlo de la pila.
+
+    :param my_stack: La pila a examinar.
+    :type my_stack: stack
+
+    :returns: El elemento en el tope de la pila.
+    :rtype: any
+    """
+    # TODO3: Implementar la función top()
+```
+
+- ¿Qué función del API de arreglo serviría?
+  - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->`array_list.last_element()`
+- Complejidad:
+  - &shy;<!-- .element: class="fragment" data-fragment-index="2" -->O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Implementación de una pila usando un arreglo (2/2)
+
+
+- En resumen
+	- Si se usa un `array_list` (o una lista nativa de Python)
+		- Se puede implementar una pila muy eficiente
+			* **O(1)** (con dos casos amortizados)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Implementación de una cola
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+###  Implementación de una cola usando un lista enlazada simple (1/2)
+
+- Sea `single_linked_list` 
+	- La implementación de una lista enlazada simple
+- Sea `sll` 
+	- El alias usado para importar esa implementación
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+```python
+def new_queue():
+    """ 
+    Crea una cola vacía.
+
+    :returns: Una cola vacia.
+    :rtype: queue
+    """
+    return sll.new_list()
+```
+
+- Complejidad:
+	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `size()`
+
+Es solo un wrapper de: `single_linked_list.size()`
+
+```python
+def size(my_queue):
+    """ 
+	Retorna el número de elementos en la cola.
+
+	:param my_queue: La cola a examinar.
+	:type my_queue: queue
+
+	:returns: El número de elementos en la cola.
+	:rtype: int
+    """
+    return sll.size(my_queue)
+```
+
+- Complejidad:
+  - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `is_empty()`
+
+- Es solo un wrapper de: `single_linked_list.is_empty()`
+
+```python
+def is_empty(my_queue):
+    """ 
+    Verifica si la cola es vacía.
+
+	:param my_queue: La cola a examinar
+	:type my_queue: queue
+
+	:returns: True si la cola está vacía, False en caso contrario.
+	:rtype: bool
+    """
+    return sll.is_empty(my_queue)
+```
+- Complejidad:
+  - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+```python
+def enqueue(my_queue, element):
+    """
+    Encola el elemento dado (lo agrega al final).
+
+	:param my_queue: La cola donde se insertará el elemento.
+	:type my_queue: queue
+	:param element: El elemento a insertar.
+	:type element: any
+
+	:returns: La cola modificada.
+	:rtype: queue
+    """
+    # TODO4: Implementar la función enqueue()
+```
+
+- ¿Qué función del API de lista enlazada simple serviría?
+- ¿Complejidad?
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+```python
+def dequeue(my_queue):
+    """
+    Desencola un elemento (retorna el primer elemento y elimina).
+
+	:param my_queue: La cola donde se eliminará el elemento.
+	:type my_queue: queue
+
+	:returns: El primer elemento de la cola.
+	:rtype: any
+    """
+    # TODO5: Implementar la función dequeue()
+```
+
+- ¿Qué función del API de lista enlazada simple serviría?
+- ¿Complejidad?
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+```python
+def peek(my_queue):
+    """
+    Retorna el primer elemento de la cola, sin eliminarlo.
+
+	:param my_queue: La cola donde se eliminará el elemento.
+	:type my_queue: queue
+
+	:returns: El primer elemento de la cola.
+	:rtype: any
+    """
+    # TODO6: Implementar la función peek()
+```
+
+- ¿Qué función del API de lista enlazada simple serviría?
+- ¿Complejidad?
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+###  Implementación de una cola usando un lista enlazada simple (2/2)
+
+
+- En resumen
+	- Si se usa un `single_linked_list` 
+		- Se puede implementar una cola muy eficiente
+			- O(1) (sin amortizaciones)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz I (1/2)
+
+- Asuma que `revert(queue)` invierte el orden de los elementos en la cola (`queue`)
+- Ej:
+	- Si la cola tenía los elementos en el orden  `queue = [a, b, c]`
+		- Después de aplicar `revert(queue)`
+			- El orden será `[c, b, a]`
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz I (2/2)
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones de Cola</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 21px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <p>¿Cuál será el contenido de una cola vacía <code>queue</code> después de las siguientes operaciones?</p>
+    <pre>
+queue.enqueue(0)
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
+queue.dequeue()
+revert(queue)
+queue.enqueue(-1)
+queue.dequeue() 
+queue.enqueue(-2)
+queue.enqueue(-3)
+queue.dequeue()
+queue.dequeue()
+queue.dequeue()
+revert(queue)</pre>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz I - Solución
+
+```python
+queue.enqueue(0)  # Añade 0 al final de la cola: [0]
+queue.enqueue(1)  # Añade 1 al final: [0, 1]
+queue.enqueue(2)  # Añade 2 al final: [0, 1, 2]
+queue.enqueue(3)  # Añade 3 al final: [0, 1, 2, 3]
+queue.dequeue()  # Elimina 0 del frente: [1, 2, 3]
+revert(queue)  # [3, 2, 1]
+queue.enqueue(-1)  # Añade -1 al final: [3, 2, 1, -1]
+queue.dequeue()  # Elimina 3 del frente: [2, 1, -1]
+queue.enqueue(-2)  # Añade -2 al final: [2, 1, -1, -2]
+queue.enqueue(-3)  # Añade -3 al final: [2, 1, -1, -2, -3]
+queue.dequeue()  # Elimina 2 del frente: [1, -1, -2, -3]
+queue.dequeue()  # Elimina 1 del frente: [-1, -2, -3]
+queue.dequeue()  # Elimina -1 del frente: [-2, -3]
+revert(queue)  # [-3, -2]
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz II
+
+- Suponga que se realiza la siguiente secuencia de operaciones en una cola vacía
+- Una letra significa que esta se encoló: `enqueue()`
+- Un asterisco significa que una letra se desencoló: `dequeue()`
+
+- ¿Cuál es la secuencia de letras retornada por las operaciones `dequeue()`?
+
+**Nota:** (Las operaciones se realizan de izquierda a derecha)
+
+<br>
+
+E A S * Y * Q U E * * * S T * * * I O * N * * *
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz II - Solución
+
+- E A S * Y * Q U E * * * S T * * * I O * N * * *
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones de Cola</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 21px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <pre>
+E: Se encola ‘E’. La cola es [E].
+A: Se encola ‘A’. La cola es [E, A].
+S: Se encola ‘S’. La cola es [E, A, S].
+*: Se desencola ‘E’. La cola es [A, S]. Salida: <b>E</b>
+Y: Se encola ‘Y’. La cola es [A, S, Y].
+*: Se desencola ‘A’. La cola es [S, Y]. Salida: <b>A</b>
+Q: Se encola ‘Q’. La cola es [S, Y, Q].
+U: Se encola ‘U’. La cola es [S, Y, Q, U].
+E: Se encola ‘E’. La cola es [S, Y, Q, U, E].
+*: Se desencola ‘S’. La cola es [Y, Q, U, E]. Salida: <b>S</b>
+*: Se desencola ‘Y’. La cola es [Q, U, E]. Salida: <b>Y</b>
+*: Se desencola ‘Q’. La cola es [U, E]. Salida: <b>Q</b>
+S: Se encola ‘S’. La cola es [U, E, S].
+T: Se encola ‘T’. La cola es [U, E, S, T].
+*: Se desencola ‘U’. La cola es [E, S, T]. Salida: <b>U</b>
+*: Se desencola ‘E’. La cola es [S, T]. Salida: <b>E</b>
+*: Se desencola ‘S’. La cola es [T]. Salida: <b>S</b>
+I: Se encola ‘I’. La cola es [T, I].
+O: Se encola ‘O’. La cola es [T, I, O].
+*: Se desencola ‘T’. La cola es [I, O]. Salida: <b>T</b>
+N: Se encola ‘N’. La cola es [I, O, N].
+*: Se desencola ‘I’. La cola es [O, N]. Salida: <b>I</b>
+*: Se desencola ‘O’. La cola es [N]. Salida: <b>O</b>
+*: Se desencola ‘N’. La cola está vacía. Salida: <b>N</b>  </pre>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Python incluye una cola de doble extremo
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+####  `deque`
+
+
+- `deque` (Double-Ended Queue) 
+	- Estructura de datos optimizada para operaciones eficientes en ambos extremos
+	- Forma parte del módulo `collections` en Python
+	- Es útil cuando se necesita un acceso rápido a ambos extremos de la cola
+
+	- Así se importa a `deque`:
+	
+	```python
+	from collections import deque
+	```
+
+	<br>
+
+- Ayuda: [https://docs.python.org/3/library/collections.html#collections.deque](https://docs.python.org/3/library/collections.html#collections.deque)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Características de `deque`
+
+- Permite agregar y eliminar elementos 
+	- Desde ambos extremos de manera eficiente
+    
+- Opera en O(1) para operaciones en los extremos
+
+    
+- Es ideal para:
+	- Colas
+	- Buffers circulares y 
+	- Algoritmos como BFS
+		- Estudiado más adelante en el curso...
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Creación
+
+
+```python
+dq = deque()  # Crea un deque vacío
+
+dq2 = deque([1, 2, 3, 4])  # Crea un deque con elementos iniciales
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Métodos principales de `deque`
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `append(x)` - Agregar al final
+
+```python
+dq.append(5)  # Agrega 5 al final
+```
+
+- Complejidad: O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `appendleft(x)` - Agregar al inicio
+
+```python
+dq.appendleft(0)  # Agrega 0 al inicio
+```
+
+- Complejidad: O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `pop()` - Eliminar y retornar el último elemento
+
+```python
+ultimo = dq.pop()  # Elimina el último elemento y lo retorna
+```
+
+- Complejidad: O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `popleft()` - Eliminar y retornar el primer elemento
+
+```
+primero = dq.popleft()  # Elimina el primer elemento y lo retorna
+```
+
+- Complejidad: O(1)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `extend(iterable)` - Agregar varios elementos al final
+
+```
+dq.extend([6, 7, 8])  # Agrega 6, 7 y 8 al final
+```
+
+Complejidad: O(k) (donde k es la cantidad de elementos agregados)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `extendleft(iterable)` - Agregar varios elementos al inicio (en orden inverso) 
+
+```python
+dq.extendleft([9, 10])  # Agrega 9 y 10 al inicio en orden inverso
+```
+
+**Complejidad:** O(k) (donde k es la cantidad de elementos agregados)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `extendleft(iterable)` - Agregar varios elementos al inicio (en orden inverso) - Ejemplo
+
+
+```python
+from collections import deque
+
+dq = deque([1, 2, 3, 4])
+print(dq)  # → deque([1, 2, 3, 4])
+
+dq.extendleft([9, 10])  # Agrega 9 y 10 al inicio en orden inverso
+print(dq)   # → deque([10, 9, 1, 2, 3, 4])
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Métodos avanzados de `deque`
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `rotate(n)` - Rotar elementos n posiciones
+
+```python
+dq.rotate(2)  # Rota el deque 2 posiciones a la derecha
+
+dq.rotate(-1) # Rota 1 posición a la izquierda
+```
+
+Complejidad: O(n)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `rotate(n)` - Rotar elementos n posiciones - Ejemplo
+
+```python
+from collections import deque
+
+dq = deque([1, 2, 3, 4, 5])
+print(dq)  # → deque([1, 2, 3, 4, 5])
+
+# Rotar 2 posiciones a la derecha:
+dq.rotate(2)
+print(dq)  # → deque([4, 5, 1, 2, 3])
+
+# Rotar 1 posición a la izquierda
+dq.rotate(-1)
+print(dq)  # → deque([5, 1, 2, 3, 4])
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `maxlen` - Establecer una longitud máxima
+
+```python
+dq = deque(maxlen=5)  # Crea un deque con máximo de 5 elementos
+dq.extend([1, 2, 3, 4, 5])
+dq.append(6)  # El 1 se elimina automáticamente para mantener el tamaño máximo
+
+print(dq)  # → deque([2, 3, 4, 5, 6], maxlen=5)
+```
+
+<br>
+
+- Uso: Útil para implementar buffers circulares
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `deque` vs `list` (1/2)
+
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            font-size: 16px;
+        }
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Operación</th>
+            <th>deque</th>
+            <th>list</th>
+        </tr>
+        <tr>
+            <td><code>append(x)</code></td>
+            <td>O(1)</td>
+            <td>O(1)</td>
+        </tr>
+        <tr>
+            <td><code>appendleft(x)</code></td>
+            <td>O(1)</td>
+            <td>O(n)</td>
+        </tr>
+        <tr>
+            <td><code>pop()</code></td>
+            <td>O(1)</td>
+            <td>O(1)</td>
+        </tr>
+        <tr>
+            <td><code>popleft()</code></td>
+            <td>O(1)</td>
+            <td>O(n)</td>
+        </tr>
+        <tr>
+            <td><code>extend(iterable)</code></td>
+            <td>O(k)</td>
+            <td>O(k)</td>
+        </tr>
+        <tr>
+            <td><code>extendleft(iterable)</code></td>
+            <td>O(k)</td>
+            <td>O(n)</td>
+        </tr>
+    </table>
+
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `deque` vs `list` (2/2)
+
+- `deque` es más eficiente que `list` 
+	- Para operaciones en ambos extremos
+	
+<br>
+
+- `deque` es ideal para colas, buffers y estructuras de datos 
+	- Donde se requiere acceso rápido a los extremos
+	
+<br>
+
+- `deque` soporta métodos avanzados como
+	- `rotate()` y `maxlen()` (no disponibles en `list`)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase I - Invertir una lista usando una pila
+
+```python
+def invertir_lista_usando_pila(lista):
+    """
+    Invierte el orden de los elementos de la lista dada utilizando una pila.
+    Nota1: Represente la pila con una lista de Python.
+	Nota2: Agrege al inicio.
+
+    :param lista: La lista de elementos a invertir.
+    :type lista: list
+
+    :returns: Una nueva lista con los elementos en orden inverso.
+    :rtype: list
+
+	>>> invertir_lista_usando_pila([])
+    []
+
+    >>> invertir_lista_usando_pila([1, 2, 3, 4, 5])
+    [5, 4, 3, 2, 1]
+
+    >>> invertir_lista_usando_pila(['a', 'b', 'c', 'd'])
+    ['d', 'c', 'b', 'a']
+    """
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase I - Invertir una lista usando una pila - Solución
+
+```python
+def invertir_lista_usando_pila(lista):
+    """
+    Invierte el orden de los elementos de la lista dada utilizando una pila.
+    Nota1: Represente la pila con una lista de Python.
+	Nota2: Agrege al inicio.
+
+    :param lista: La lista de elementos a invertir.
+    :type lista: list
+
+    :returns: Una nueva lista con los elementos en orden inverso.
+    :rtype: list
+
+	>>> invertir_lista_usando_pila([])
+    []
+
+    >>> invertir_lista_usando_pila([1, 2, 3, 4, 5])
+    [5, 4, 3, 2, 1]
+
+    >>> invertir_lista_usando_pila(['a', 'b', 'c', 'd'])
+    ['d', 'c', 'b', 'a']
+    """
+	# Inicializa una lista que emulará una pila vacía:
+    pila = []
+
+    # Itera sobre la lista original 
+	# y agrega los elementos al principio de la pila:
+    for elemento in lista:
+        pila.insert(0, elemento)
+        
+    return pila
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase I -¿Cuál es la complejidad de la anterior implementación?
+
+```python
+def invertir_lista_usando_pila(lista):
+    pila = []
+    for elemento in lista:
+        pila.insert(0, elemento)
+    return pila
+```
+
+
+-  `for elemento in lista`
+    - Recorre la lista original: O(n)
+-  `insert(0, elemento)`
+    - Inserta en la posición 0 de una lista
+	    - Desplazamiento todos los elementos
+		    - O(n) por cada inserción
+- Complejidad:
+    - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->`for` itera **n** veces: O(n)
+	    - &shy;<!-- .element: class="fragment" data-fragment-index="2" -->cada `insert(0, elemento)`:  O(n)
+		    - &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Los ciclos están anidados:
+			    - &shy;<!-- .element: class="fragment" data-fragment-index="4" -->n × n = O(n²)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase II - Invertir una lista usando una pila
+
+```python
+def invertir_lista_usando_pila(lista):
+    """
+    Invierte el orden de los elementos de la lista dada utilizando una pila.
+    Haga la implementación de una forma eficiente. 
+
+    :param lista: La lista de elementos a invertir.
+    :type lista: list
+
+    :returns: Una nueva lista con los elementos en orden inverso.
+    :rtype: list
+
+	>>> invertir_lista_usando_pila([])
+    []
+
+    >>> invertir_lista_usando_pila([1, 2, 3, 4, 5])
+    [5, 4, 3, 2, 1]
+
+    >>> invertir_lista_usando_pila(['a', 'b', 'c', 'd'])
+    ['d', 'c', 'b', 'a']
+    """
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase II - Invertir una lista usando una pila - Solución
+
+```python
+def invertir_lista_usando_pila(lista):
+    """
+    Invierte el orden de los elementos de la lista dada utilizando una pila.
+    Haga la implementación de una forma eficiente. 
+
+    :param lista: La lista de elementos a invertir.
+    :type lista: list
+
+    :returns: Una nueva lista con los elementos en orden inverso.
+    :rtype: list
+
+	>>> invertir_lista_usando_pila([])
+    []
+
+    >>> invertir_lista_usando_pila([1, 2, 3, 4, 5])
+    [5, 4, 3, 2, 1]
+
+    >>> invertir_lista_usando_pila(['a', 'b', 'c', 'd'])
+    ['d', 'c', 'b', 'a']
+    """
+    pila = []  # Usamos una lista como pila
+    for elemento in lista:
+        pila.append(elemento)  # Apilamos cada elemento
+    
+    lista_invertida = []
+    while pila:
+		# Desapilamos y agregamos a la nueva lista:
+        lista_invertida.append(pila.pop())  
+    
+    return lista_invertida
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejercicio en clase II - ¿Cuál es la complejidad de la anterior implementación?
+
+```python
+def invertir_lista_usando_pila(lista):
+    pila = []
+    for elemento in lista:
+        pila.append(elemento)
+    lista_invertida = []
+    while pila:
+        lista_invertida.append(pila.pop())  
+    return lista_invertida
+```
+
+-  `for elemento in lista`
+    - Recorre la lista original: O(n)
+    
+- `while pila`
+    - Mientras la pila no esté vacía, ejecuta `pop()`: O(1)
+	    - En cada iteración: O(n)
+
+- Complejidad:
+	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->`for` itera **n** veces: O(n)
+		- &shy;<!-- .element: class="fragment" data-fragment-index="2" -->while itera **n** veces: O(n)
+			- &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Son ciclos independientes:
+				- &shy;<!-- .element: class="fragment" data-fragment-index="4" -->n + n = O(n)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `list.reverse()` (1/2)
+
+- Invierte el orden de los elementos de una lista en sitio
+	- Modifica la lista original
+	- No retorna una nueva lista
+		- Sino que altera la existente
+- Sintaxis:
+```Python
+list.reverse()
+```
+
+- Ej:
+```python
+numeros = [1, 2, 3, 4, 5]
+numeros.reverse()
+print(numeros) # → [5, 4, 3, 2, 1]
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `list.reverse()` (2/2)
+
+- `list.reverse()` tiene una complejidad de O(n)
+	- Porque intercambiar los elementos en pares 
+		- Desde los extremos hacia el centro
+		- Esto implica n/2 intercambios, c/u: O(1)
+			- Complejidad total es O(n)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `list.reverse()` vs `[::-1]` (1/2)
+
+- `lista[::-1]` 
+	- También invierte una lista
+		-  Crea una nueva copia de la lista en memoria
+			- Es **O(n)** en complejidad temporal y espacial
+- `list.reverse()` 
+	- Es **O(n)** en complejidad temporal (porque intercambia elementos)
+	- **O(1)** en complejidad espacial (porque no usa memoria extra)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `list.reverse()` vs `[::-1]` (2/2)
+
+- `lista[::-1]` 
+	- Mejor opción si **no se puede modificar** a la original
+
+	<br>
+
+- `list.reverse()` 
+	- Mejor opción si **se puede modificar** la original
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
