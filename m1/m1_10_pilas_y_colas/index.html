@@ -953,7 +953,6 @@ print(dq)   # → deque([10, 9, 1, 2, 3, 4])
 - ¿Qué estructura de datos se podría usar para implementar las operaciones básicas de un `deque`, manteniendo la complejidad temporal en O(1)?
 
 	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Un **lista doblemente enlazada** sería suficiente
-
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -962,23 +961,26 @@ print(dq)   # → deque([10, 9, 1, 2, 3, 4])
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
-      padding: 20px;
+      padding: 5px;
+      display: flex;
+      justify-content: center;
     }
     table {
-      width: 100%;
+      width: 40%;
       border-collapse: collapse;
       text-align: center;
       background-color: white;
-      border-radius: 8px;
+      border-radius: 5px;
       overflow: hidden;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 16px; /* Reduce el tamaño del texto */
     }
     th, td {
       border: 1px solid black;
-      padding: 10px;
+      padding: 5px; /* Reduce el padding */
     }
     th {
-      background-color: #cfe2f3; /* Header color */
+      background-color: #cfe2f3;
       font-weight: bold;
     }
     td:first-child {
@@ -995,8 +997,13 @@ print(dq)   # → deque([10, 9, 1, 2, 3, 4])
 <body>
   <table>
     <tr>
-      <th>Estructura circular</th>
-<th>Acceso</th> <th>Inserción al inicio</th> <th>Eliminación al inicio</th> <th>Inserción al final</th> <th>Eliminación al final</th> <th>Inserción/ Eliminación interna</th>
+      <th>Estructura</th>
+      <th>Acceso</th>
+      <th>Ins. Inicio</th>
+      <th>Elim. Inicio</th>
+      <th>Ins. Final</th>
+      <th>Elim. Final</th>
+      <th>Ins./Elim. Interna</th>
     </tr>
     <tr>
       <td>Array List</td>
@@ -1012,7 +1019,7 @@ print(dq)   # → deque([10, 9, 1, 2, 3, 4])
       <td>O(n)</td>
       <td><b>O(1)</b></td>
       <td><b>O(1)</b></td>
-      <td><b>O(1)<b></td>
+      <td><b>O(1)</b></td>
       <td>O(n)</td>
       <td>O(n)</td>
     </tr>
@@ -1046,6 +1053,7 @@ print(dq)   # → deque([10, 9, 1, 2, 3, 4])
   </table>
 </body>
 </html>
+\* Amortizado
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
