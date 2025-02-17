@@ -305,9 +305,6 @@ def add_first(my_list, element):
     my_list["header"]["next"]["prev"] = new_node
     my_list["header"]["next"] = new_node
 
-    if my_list["size"] == 0:
-        my_list["trailer"]["prev"] = new_node
-
     my_list["size"] += 1
 
     return my_list
@@ -376,9 +373,6 @@ def add_first(my_list, element):
     new_node["prev"] = my_list["header"]
     my_list["header"]["next"]["prev"] = new_node
     my_list["header"]["next"] = new_node
-
-    if my_list["size"] == 0:
-        my_list["trailer"]["prev"] = new_node
 
     my_list["size"] += 1
 
