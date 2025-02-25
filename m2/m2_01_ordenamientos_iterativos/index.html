@@ -1385,8 +1385,8 @@ def insertion_sort(arr):
 
 - Iteración 3: i = 3, key = 1 
 - Comparamos 1 con 4 y 3, ambos mayores que 1, 
-	- Se desplazan a la derecha. 
-		- Se inserta 1 en la posición correcta. 
+	- Se desplazan a la derecha 
+		- Se inserta 1 en la posición correcta 
 			- Resultado: [1, 1, 3, 4, 5, 9, 2, 6, 5, 3, 5]
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
@@ -1412,7 +1412,7 @@ def insertion_sort(arr):
 
 - Iteración 4: i = 4, key = 5
 	- 5 se ubica luego de 4
-		- Por lo que ya está en su posición correcta. 
+		- Por lo que ya está en su posición correcta
 			- Resultado: [1, 1, 3, 4, 5, 9, 2, 6, 5, 3, 5]
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
@@ -1488,7 +1488,7 @@ def insertion_sort(arr):
 ```
 
 - Iteración 7: i = 7, key = 6 
-	- 6 se inserta en la posición correcta, 
+	- 6 se inserta en la posición correcta 
 		- Desplazando solo 9
 			- Resultado: [1, 1, 2, 3, 4, 5, 6, 9, 5, 3, 5]
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
@@ -1539,7 +1539,7 @@ def insertion_sort(arr):
 ```
 
 - Iteración 9: i = 9, key = 3
-	- 3 se compara con 9, 6, 5 y 5, se desplazan, 
+	- 3 se compara con 9, 6, 5 y 5, se desplazan 
 		- Hasta ubicar 3 tras el 2
 			- Resultado: [1, 1, 2, 3, 3, 4, 5, 5, 6, 9, 5]
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
@@ -1830,11 +1830,12 @@ while j >= 0 and arr[j] < key:
 ### Shell sort (2/2)
 
 - **Características:**
-	- El ordenamiento comienza con saltos grandes y disminuyen gradualmente
-	- Incrementa la eficiencia del Insertion sort 
-		- Utilizando saltos de elementos
-	- Reduce progresivamente la distancia de comparación hasta llegar a 1
-		 - Finalizando con un Insertion sort convencional
+	-  Incrementa la eficiencia del Insertion sort 
+		- Utilizando saltos
+	- El ordenamiento comienza con saltos grandes 
+		- Que disminuyen gradualmente
+	- Reduce progresivamente la distancia de comparación hasta llegar a `1`
+		 - Finalizando con un Insertion sort convencional (`h = 1`)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -1847,37 +1848,65 @@ def shell_sort(arr):
     con la secuencia de Knuth.
     """
     n = len(arr)
-    gap = 1
-    while gap < n // 3:  # Genera la secuencia de Knuth
-        gap = 3 * gap + 1
+    h = 1
+    while h < n // 3:  # Genera la secuencia de Knuth
+        h = 3 * h + 1
     
-    while gap > 0:
-        for i in range(gap, n):
+    while h > 0:
+        for i in range(h, n):
             key = arr[i]
             j = i
-            while j >= gap and arr[j - gap] > key:
-                arr[j] = arr[j - gap]
-                j -= gap
+            while j >= h and arr[j - h] > key:
+                arr[j] = arr[j - h]
+                j -= h
             arr[j] = key
-        gap //= 3  # Reducción del intervalo según la secuencia de Knuth
+        h //= 3  # Reducción del intervalo según la secuencia de Knuth
     return arr
 ```
+
+- Estudiaremos una implementación que usa
+	- La **secuencia de Knuth**
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Ejemplo - Shell sort - h = 4 (1/2)
+### Comprendamos Shell sort con un ejemplo detallado
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-- Determinación de `h` usando la secuencia de Knuth:
+### Lista inicial
+
+- `N = 9`:
+
+| **10** | **4** | **5** | **3** | **7** | **8** | **6** | **9** | **2** |
+| ------ | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| **0**  | **1** | **2** | **3** | **4** | **5** | **6** | **7** | **8** |
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### La secuencia de Knuth (1/3)
+
+
+-  `N = 9`
+
 ```python
-N = len(lst)
+N = len(lst)  # Longitud de la lista, aquí N = 9
 h = 1
-while h < N // 3:
-	h = 3 * h + 1
+while h < N // 3:  # 1 < 3; 4 < 3
+    h = 3 * h + 1  # h = 4
 ```
 
+
+- Al inicio
+	- `h = 4`
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplo - Shell sort - h = 4
+
 - Para N = 9, h inicia en 4
-- No hay cambios en los elementos (2, 7, 10)
-	- Ya están en orden ascendente
+	- **(10, 7, 2)** → Se reordena a (2, 7, 10)
+
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -1895,20 +1924,1073 @@ while h < N // 3:
             border: 1px solid black;
             font-weight: bold;
         }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td class="highlight">10</td>
+            <td>4</td>
+            <td>5</td>
+            <td>3</td>
+            <td class="highlight">7</td>
+            <td>8</td>
+            <td>6</td>
+            <td>9</td>
+            <td class="highlight">2</td>
+        </tr>
+        <tr>
+            <td class="highlight">0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td class="highlight">4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td class="highlight">8</td>
+        </tr>
+    </table>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Comprendamos el intercambio en detalle
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+|**10**||||**7**||||**2**|
+|---|---|---|---|---|---|---|---|---|
+|**0**||||**4**||||**8**|
+
+- Elemento actual: 7 (posición 4)
+    - Se compara con 10 (posición 0)
+	    - Como 7 < 10
+		    - Se mueve 10  (posición 4)
+    - 7 se coloca en la posición 0:
+
+|**7**||||**10**||||**2**|
+|---|---|---|---|---|---|---|---|---|
+|**0**||||**4**||||**8**|
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+|**7**||||**10**||||**2**|
+|---|---|---|---|---|---|---|---|---|
+|**0**||||**4**||||**8**|
+
+- Elemento actual: 2 (posición 8)
+    - Se compara con 10 (posición 4)
+	    - Como 2 < 10
+		    - Se mueve 10 (posición 8)
+    - Se compara con 7 (posición 0)
+	    - como 2 < 7
+		    - Se mueve 7 (posición 4)
+    - 2 se coloca en la posición 0:
+
+|**2**||||**7**||||**10**|
+|---|---|---|---|---|---|---|---|---|
+|**0**||||**4**||||**8**|
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### En resumen...
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplo - Shell sort - h = 4
+
+- Para N = 9, h inicia en 4
+	- **(10, 7, 2)** → Se reordena a (2, 7, 10)
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td class="highlight">10</td>
+            <td>4</td>
+            <td>5</td>
+            <td>3</td>
+            <td class="highlight">7</td>
+            <td>8</td>
+            <td>6</td>
+            <td>9</td>
+            <td class="highlight">2</td>
+        </tr>
+        <tr>
+            <td class="highlight">0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td class="highlight">4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td class="highlight">8</td>
+        </tr>
+    </table>
+</body>
+</html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
     </style>
 </head>
 <body>
     <table>
         <tr>
-            <td style="background-color: #fde7c7;">2</td>
-            <td style="background-color: #d7cfee;">4</td>
-            <td style="background-color: #dff0d8;">5</td>
-            <td style="background-color: #cce5ff;">3</td>
-            <td style="background-color: #fde7c7;">7</td>
-            <td style="background-color: #d7cfee;">8</td>
-            <td style="background-color: #dff0d8;">6</td>
-            <td style="background-color: #cce5ff;">9</td>
-            <td style="background-color: #fde7c7;">10</td>
+            <td class="highlight">2</td>
+            <td>4</td>
+            <td>5</td>
+            <td>3</td>
+            <td class="highlight">7</td>
+            <td>8</td>
+            <td>6</td>
+            <td>9</td>
+            <td class="highlight">10</td>
+        </tr>
+        <tr>
+            <td class="highlight">0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td class="highlight">4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td class="highlight">8</td>
+        </tr>
+    </table>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplo - Shell sort - h = 4
+
+- Para N = 9, h inicia en 4
+	- **(4, 8)** → Ya está ordenado, no cambia
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>2</td>
+            <td class="highlight">4</td>
+            <td>5</td>
+            <td>3</td>
+            <td>7</td>
+            <td class="highlight">8</td>
+            <td>6</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td class="highlight">1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td class="highlight">5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+    </table>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplo - Shell sort - h = 4
+
+- Para N = 9, h inicia en 4
+	- **(5, 6)** → Ya está ordenado, no cambia
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>2</td>
+            <td>4</td>
+            <td class="highlight">5</td>
+            <td>3</td>
+            <td>7</td>
+            <td>8</td>
+            <td class="highlight">6</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td class="highlight">2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td class="highlight">6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+    </table>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplo - Shell sort - h = 4
+
+- Para N = 9, h inicia en 4
+	- **(3, 9)** → Ya está ordenado, no cambia
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>2</td>
+            <td>4</td>
+            <td>5</td>
+            <td class="highlight">3</td>
+            <td>7</td>
+            <td>8</td>
+            <td>6</td>
+            <td class="highlight">9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td class="highlight">3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td class="highlight">7</td>
+            <td>8</td>
+        </tr>
+    </table>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### La secuencia de Knuth (2/3)
+
+
+- `N = 9`
+- `h = 4`
+
+```python
+def shell_sort(arr):
+    n = len(arr)
+    h = 1
+    while h < n // 3:  # Genera la secuencia de Knuth
+        h = 3 * h + 1
+    
+    while h > 0:
+        for i in range(h, n):
+            key = arr[i]
+            j = i
+            while j >= h and arr[j - h] > key:
+                arr[j] = arr[j - h]
+                j -= h
+            arr[j] = key
+        h //= 3  # h = 4 // 3 → 1
+    return arr
+```
+
+- Ahora
+	- `h = 1`
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplo - Shell sort - h = 1
+
+- Para N = 9, h = 1
+-  Se aplica Insertion Sort
+	- No hay cambios
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>2</td>
+            <td class="highlight">4</td>
+            <td>5</td>
+            <td>3</td>
+            <td>7</td>
+            <td>8</td>
+            <td>6</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td class="highlight">1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+    </table>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplo - Shell sort - h = 1
+
+- Para N = 9, h = 1
+-  Se aplica Insertion Sort
+	- No hay cambios
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>2</td>
+            <td>4</td>
+            <td class="highlight">5</td>
+            <td>3</td>
+            <td>7</td>
+            <td>8</td>
+            <td>6</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td class="highlight">2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+    </table>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplo - Shell Sort - h = 1
+
+- Para N = 9, h = 1
+- Se aplica Insertion Sort
+	- Elemento en posición 3 (3) → Se mueve antes de 4 y 5
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>2</td>
+            <td>4</td>
+            <td>5</td>
+            <td class="highlight">3</td>
+            <td>7</td>
+            <td>8</td>
+            <td>6</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td class="highlight">3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+    </table>
+</body>
+</html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>2</td>
+            <td class="highlight">3</td>
+            <td class="highlight">4</td>
+            <td class="highlight">5</td>
+            <td>7</td>
+            <td>8</td>
+            <td>6</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td class="highlight">1</td>
+            <td class="highlight">2</td>
+            <td class="highlight">3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+    </table>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplo - Shell sort - h = 1
+
+- Para N = 9, h = 1
+- Se aplica Insertion Sort
+	- No hay cambios
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td class="highlight">7</td>
+            <td>8</td>
+            <td>6</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td class="highlight">4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+    </table>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplo - Shell sort - h = 1
+
+- Para N = 9, h = 1
+	- Se aplica Insertion Sort
+- No hay cambios
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>7</td>
+            <td class="highlight">8</td>
+            <td>6</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td class="highlight">5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+    </table>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplo - Shell Sort - h = 1
+
+- Para N = 9, h = 1
+- Se aplica Insertion Sort
+	- Elemento en posición 6 (6) → Se mueve antes de 7 y 8
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>7</td>
+            <td>8</td>
+            <td class="highlight">6</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td class="highlight">6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+    </table>
+</body>
+</html>
+
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td class="highlight">6</td>
+            <td class="highlight">7</td>
+            <td class="highlight">8</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td class="highlight">4</td>
+            <td class="highlight">5</td>
+            <td class="highlight">6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+    </table>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplo - Shell sort - h = 1
+
+- Para N = 9, h = 1
+	- Se aplica Insertion Sort
+- No hay cambios
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td class="highlight">9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td class="highlight">7</td>
+            <td>8</td>
+        </tr>
+    </table>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplo - Shell sort - h = 1
+
+- Para N = 9, h = 1
+	- Se aplica Insertion Sort
+- No hay cambios
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td class="highlight">10</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td class="highlight">8</td>
+        </tr>
+    </table>
+</body>
+</html>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### La secuencia de Knuth (2/3)
+
+
+- `N = 9`
+- `h = 1`
+
+```python
+def shell_sort(arr):
+    n = len(arr)
+    h = 1
+    while h < n // 3:  # Genera la secuencia de Knuth
+        h = 3 * h + 1
+    
+    while h > 0:
+        for i in range(h, n):
+            key = arr[i]
+            j = i
+            while j >= h and arr[j - h] > key:
+                arr[j] = arr[j - h]
+                j -= h
+            arr[j] = key
+        h //= 3  # h = 1 // 3 → 0
+    return arr
+```
+
+- Ahora
+	- `h = 0`
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplo - Shell sort - h = 0
+
+- Cuando `h = 0`
+	- Termina el algoritmo
+
+- Lista original:	
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+        }
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td class="bold">10</td>
+            <td class="bold">4</td>
+            <td class="bold">5</td>
+            <td class="bold">3</td>
+            <td class="bold">7</td>
+            <td class="bold">8</td>
+            <td class="bold">6</td>
+            <td class="bold">9</td>
+            <td class="bold">2</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+    </table>
+</body>
+</html>
+
+
+- Lista ordenada:	
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Números</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 24px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+        }
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td class="bold">2</td>
+            <td class="bold">3</td>
+            <td class="bold">4</td>
+            <td class="bold">5</td>
+            <td class="bold">6</td>
+            <td class="bold">7</td>
+            <td class="bold">8</td>
+            <td class="bold">9</td>
+            <td class="bold">10</td>
         </tr>
         <tr>
             <td>0</td>
@@ -1927,160 +3009,9 @@ while h < N // 3:
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Ejemplo - Shell sort - h = 2
-
-
-- Reducción de h: `h = h // 3`, ahora h es 2
-- No hay cambios en los elementos (2, 5):
-
-<img src="eda/img/sh_1_1.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 2
-
-- Se intercambian 4 y 3:
-
-<img src="eda/img/sh_2.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 2
-
-- No hay cambios en los elementos (5, 7):
-
-<img src="eda/img/sh_3.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 2
-
-- No hay cambios en los elementos (4, 8):
-
-<img src="eda/img/sh_4.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 2
-
-- Se intercambian 6 y 7:
-
-<img src="eda/img/sh_5.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 2
-
-- No hay cambios en los elementos (8, 9):
-
-
-<img src="eda/img/sh_6.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 2
-
-- No hay cambios en los elementos (8, 9):
-
-
-<img src="eda/img/sh_7.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 2
-
-- No hay cambios en los elementos (7, 10):
-
-<img src="eda/img/sh_8.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 1
-
-- Reducción de h: `h = h // 3`, ahora h es 1
--  Se aplica Insertion Sort
-
-<img src="eda/img/sh_9.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 1
-
-- No hay cambios:
-
-<img src="eda/img/sh_10.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell Sort - h = 1
-
-- No hay cambios:
-
-<img src="eda/img/sh_11.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 1
-
-- Se inserta 4 antes de 5:
-
-<img src="eda/img/sh_12.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 1
-
-- No hay cambios:
-
-<img src="eda/img/sh_13.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 1
-
-- No hay cambios:
-
-<img src="eda/img/sh_14.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 1
-
-- Se inserta 7 antes de 8:
-
-<img src="eda/img/sh_15.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 1
-
-- No hay cambios:
-
-<img src="eda/img/sh_16.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 1
-
-- No hay cambios:
-
-<img src="eda/img/sh_17.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Ejemplo - Shell sort - h = 0
-
-- `h = h // 3  # h se reduce a 0
-- El ciclo externo finaliza
-	- Lista ordenada:
-
-<img src="eda/img/sh_18.png" alt="" style="object-fit: scale-down">
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
 ### Shell Sort - Complejidad temporal (1/4)
 
-- Usa la secuencia de Knuth:
+- Si se usa la secuencia de Knuth:
     
     ```python
     h = 1
@@ -2094,13 +3025,13 @@ while h < N // 3:
 
 ### Shell Sort -  Complejidad temporal (2/4)
 
-- La complejidad depende de la elección de los saltos
+- La complejidad en el **peor caso** depende de la elección de los saltos
 
 -  Si aplica una secuencia de saltos no óptima
 	- La complejidad teórica puede ser O(n²)
 - Con la **secuencia de Knuth**
-	- Se ha demostrado que 
-		- El tiempo promedio es aprox. O(`$n^{1.5}$`)
+	- Se ha demostrado teóricamente que 
+		- El tiempo promedio tiende a O(`$n^{1.5}$`)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -2108,10 +3039,10 @@ while h < N // 3:
 
 - Robert Sedgewick y otros investigadores
 	- Realizaron estudios experimentales sobre el rendimiento de Shell sort
-- Para secuencias de saltos óptimos 
-	- Como la de **Knuth** o variantes optimizadas
-		- El número esperado de comparaciones es cercano a O(`$n^{1.25}$`)
-- ❌ No existe una prueba matemática para el caso promedio exacto
+		- Para secuencias de saltos promedio
+			- Usando **Knuth** y otras variantes optimizadas
+				- El número de comparaciones tiende a O(`$n^{1.25}$`)
+- ❌ No existe una prueba matemática para el **caso promedio** exacto
 	- Estimado basado en simulaciones
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
@@ -2121,20 +3052,20 @@ while h < N // 3:
 - Cuando la lista ya está casi ordenada o
 	- Los saltos han permitido ordenar eficientemente
 		- Antes de llegar a `h = 1`
-			- La complejidad en el mejor caso es cercana a O(n log n)
+			- La complejidad en el **mejor caso** es cercana a O(n log n)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ### Shell Sort -  Complejidad temporal (4/4)
 
-- Peor caso teórico: O(`$n^{1.5}$`)
+- Peor caso (Knuth): O(`$n^{1.5}$`)
 	- Dependiendo de la secuencia de salto
 		- Estimación válida con la secuencia de Knuth
-- Caso promedio teórico: O(`$n^{1.25}$`)
-	-   Para secuencias promedio con saltos óptimos (en simulaciones)
-- Mejor caso conocido: O(n log n) 
+			- Podría ser  O(`$n^{2}$`) con secuencias no óptimas 
+- Caso promedio: O(`$n^{1.25}$`)
+	-   Para secuencias promedio en simulaciones
+- Mejor caso (conocido): O(n log n) 
 	- Para ciertas secuencias muy óptimas de saltos
-		- Si esa secuencias óptimas no de dan, podría ser O(n)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -2142,6 +3073,7 @@ while h < N // 3:
 
 - Opera sin estructuras adicionales
 - Usa solo una variable temporal para intercambios
+- No usa otras variables significativas en consumo de espacio
 
 - ¿Complejidad espacial?
     - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**O(1)**
@@ -2229,6 +3161,7 @@ while h < N // 3:
 
 
 - Es **inestable** debido a los saltos grandes en la comparación de elementos
+	- Se pierde el mecanismo para preservar estabilidad de Insertion sort
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -2246,19 +3179,19 @@ while h < N // 3:
 ```python
 def shell_sort(arr):
     n = len(arr)
-    gap = 1
-    while gap < n // 3:  # Generar la secuencia de Knuth
-        gap = 3 * gap + 1
+    h = 1
+    while h < n // 3:
+        h = 3 * h + 1
     
-    while gap > 0:
-        for i in range(gap, n):
+    while h > 0:
+        for i in range(h, n):
             key = arr[i]
             j = i
-            while j >= gap and arr[j - gap] > key:
-                arr[j] = arr[j - gap]
-                j -= gap
+            while j >= h and arr[j - h] > key:
+                arr[j] = arr[j - h]
+                j -= h
             arr[j] = key
-        gap //= 3  # Reducción del intervalo según la secuencia de Knuth
+        h //= 3
     return arr
 ```
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
@@ -2269,32 +3202,32 @@ def shell_sort(arr):
 ```python
 def shell_sort(arr):
     n = len(arr)
-    gap = 1
-    while gap < n // 3:  # Generar la secuencia de Knuth
-        gap = 3 * gap + 1
+    h = 1
+    while h < n // 3:
+        h = 3 * h + 1
     
-    while gap > 0:
-        for i in range(gap, n):
+    while h > 0:
+        for i in range(h, n):
             key = arr[i]
             j = i
-            while j >= gap and arr[j - gap] > key:
-                arr[j] = arr[j - gap]
-                j -= gap
+            while j >= h and arr[j - h] > key:
+                arr[j] = arr[j - h]
+                j -= h
             arr[j] = key
-        gap //= 3  # Reducción del intervalo según la secuencia de Knuth
+        h //= 3
     return arr
 ```
 
 En lugar de:
 
 ```python
-while j >= gap and arr[j - gap] > key:
+while j >= h and arr[j - h] > key:
 ```
 
 Se debe cambiar a:
 
 ```python
-while j >= gap and arr[j - gap] < key:
+while j >= h and arr[j - h] < key:
 ```
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
@@ -2306,7 +3239,7 @@ while j >= gap and arr[j - gap] < key:
 | Selection Sort | O(n²)     | O(n²)         | O(n²)      | O(1)          | No      | Sí       |
 | Insertion Sort | O(n²)     | O(n²)         | O(n)       | O(1)          | Sí      | Sí       |
 | Shell Sort*    | O(n^1.5)  | O(n^1.25)     | O(n log n) | O(1)          | No      | Sí       |
-- \* Si `h` es 1
+- \* Si `h` es siempre 1
 	- Las complejidades temporales serán iguales a las de Insertion sort
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
@@ -2332,21 +3265,21 @@ while j >= gap and arr[j - gap] < key:
 ```python
 def shell_sort(arr):
     n = len(arr)
-    gap = 1
-    while gap < n // 3:  # Generar la secuencia de Knuth
-        gap = 3 * gap + 1
+    h = 1
+    while h < n // 3:  # Generar la secuencia de Knuth
+        h = 3 * h + 1
     
-    while gap > 0:
+    while h > 0:
         ...
-        gap //= 3  # Reducción del intervalo según la secuencia de Knuth
+        h //= 3  # Reducción del intervalo según la secuencia de Knuth
 ```
 
 - Opciones:
 
-A) 400, 133, 44, 14, 4, 1\
-B) 729, 243, 81, 27, 9, 3, 1\
-C) 364, 121, 40, 13, 4, 1\
-D) 1093, 364, 121, 40, 13, 4, 1
+	- A) 400, 133, 44, 14, 4, 1
+	- B) 729, 243, 81, 27, 9, 3, 1
+	- C) 364, 121, 40, 13, 4, 1
+	- D) 1093, 364, 121, 40, 13, 4, 1
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -2381,9 +3314,10 @@ Donde `h` es el valor actual de y buscamos su predecesor en la secuencia
     <li>h = (1093 - 1) / 3 = 364 → correcto</li>
 </ul>
 
-- La respuesta correcta es:
+<br>
 
-**D) 1093, 364, 121, 40, 13, 4, 1**
+- La respuesta correcta es:
+	- **D) 1093, 364, 121, 40, 13, 4, 1**
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
