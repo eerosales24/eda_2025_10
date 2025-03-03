@@ -1349,7 +1349,7 @@ def merge(left, right):
 - Revisar las simulaciones de otros algoritmos de ordenamiento vistos en el curso:
 	- [Selection sort](https://www.hackerearth.com/practice/algorithms/sorting/selection-sort/visualize/)
 	- [Insertion sort](https://www.hackerearth.com/practice/algorithms/sorting/insertion-sort/visualize/)
-	- [Quick sort] (https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/visualize/)
+	- [Quick sort](https://www.hackerearth.com/practice/algorithms/sorting/quick-sort/visualize/)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -1361,8 +1361,8 @@ def merge(left, right):
 - División:
 
 	- En cada paso, el algoritmo **divide** el arreglo en dos partes
-	- Se realizan log n divisiones
-		- ya que en cada nivel el tamaño de las sublistas se reduce a la mitad
+	- Se realizan `log n` divisiones
+		-  En cada nivel el tamaño de las sublistas se reduce a la mitad
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -1372,10 +1372,10 @@ def merge(left, right):
 
 	- En cada nivel de la recursión
 		- Los elementos son comparados y combinados en una lista ordenada
-		- Se realizan n operaciones para fusionar las listas en cada nivel
+		- Se realizan `n` operaciones para fusionar las listas en cada nivel
 
-- Dado que hay log n niveles de recursión y 
-	- En cada nivel se realizan n comparaciones
+- Dado que hay `log n` niveles de recursión y 
+	- En cada nivel se realizan `n` comparaciones
 		- La complejidad total es: O(n log n)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
@@ -1558,6 +1558,117 @@ Se debe cambiar a:
 ```python
 if left[i] >= right[j]:
 ```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Resumen - Algoritmos de ordenamiento
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 5px;
+      display: flex;
+      justify-content: center;
+    }
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      text-align: center;
+      background-color: white;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 16px;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+    }
+    th {
+      background-color: #cfe2f3;
+      font-weight: bold;
+    }
+    td:first-child {
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tr>
+      <th>Algoritmo</th>
+      <th>Peor caso</th>
+      <th>Promedio</th>
+      <th>Mejor caso</th>
+      <th>Espacio extra</th>
+      <th>Estable</th>
+      <th>In place</th>
+    </tr>
+    <tr>
+      <td>Selection Sort</td>
+      <td>O(n²)</td>
+      <td>O(n²)</td>
+      <td>O(n²)</td>
+      <td>O(1)</td>
+      <td>No</td>
+      <td>Sí</td>
+    </tr>
+    <tr>
+      <td>Insertion Sort</td>
+      <td>O(n²)</td>
+      <td>O(n²)</td>
+      <td>O(n)</td>
+      <td>O(1)</td>
+      <td>Sí</td>
+      <td>Sí</td>
+    </tr>
+    <tr>
+      <td>Shell Sort*</td>
+      <td>O(n^1.5)</td>
+      <td>O(n^1.25)</td>
+      <td>O(n log n)</td>
+      <td>O(1)</td>
+      <td>No</td>
+      <td>Sí</td>
+    </tr>
+    <tr>
+      <td>Quick Sort</td>
+      <td>O(n²)</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(1)**</td>
+      <td>No</td>
+      <td>Sí</td>
+    </tr>
+    <tr>
+      <td>Merge Sort</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n)</td>
+      <td>Sí</td>
+      <td>No</td>
+    </tr>
+  </table>
+</body>
+</html>
+
+\* Si `h` es siempre 1
+	- Las complejidades temporales serán iguales a las de Insertion sort
+
+\*\* La complejidad espacial en peor caso es O(n) (espacio lineal) y en el mejor caso y promedio es O(log n), dado el uso de la pila por la recursión
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
