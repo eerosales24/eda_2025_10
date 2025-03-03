@@ -140,7 +140,7 @@ Universidad de los Andes
 -  Limitaciones del direccionamiento directo
 	- ¿Es siempre posible reservar un tamaño de arreglo de tal forma que `N` siempre sea mayor o igual que `n`?
 	- ¿Es siempre el caso en una aplicación que las llaves son enteros?
-	- ¿Y son siempre enteros en rango (semi) contiguo?
+		- ¿Y son siempre enteros en rango (semi) contiguo?
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -281,7 +281,8 @@ Universidad de los Andes
 
 - Principio de las cajas (principio de _Dirichlet_)
 	- Si hay más llaves `n` que espacios disponibles `N`
-	- Al menos dos llaves tendrán que compartir el mismo índice
+	- Al menos dos llaves tendrán que compartir el mismo espacio
+		- Al menos dos llaves tendrán asociado el mismo índice
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -329,17 +330,16 @@ Universidad de los Andes
 - Habrá que resolver esas colisiones
 	- La solución debe ser eficiente
 		- En uso de recursos computacionales
-
-
-
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ### Propiedades de una función hash
 
 - Método de producción de hash codes
-- Debe ser consistente
-- Llaves idénticas, deben producir el mismo hash code
-- Debe ser eficiente en cómputo
-- Debe distribuir uniformemente las llaves
+- Debe ser **consistente**
+	- Llaves idénticas, deben producir el mismo hash code
+- Debe ser **eficiente** en cómputo
+- Debe **distribuir uniformemente** las llaves
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -353,8 +353,9 @@ Universidad de los Andes
 	<br>
 
 - En ausencia de consistencia
-	- La tabla hash sería completamente inútil para retornar el índice apropiado
-	- Para la llave dada
+	- La tabla hash sería completamente inútil 
+		- Para retornar el índice apropiado
+			- Para una llave dada
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -389,7 +390,7 @@ Universidad de los Andes
 
 ### Reducción de colisiones - Escenario real (1/2)
 
-- Dividir la función hash code en dos etapas:
+- Dividir la función hash code en **dos etapas**:
 
 	<br>
 
@@ -444,7 +445,7 @@ Universidad de los Andes
 - Retorna el valor hash de un objeto
 	- Si el mismo tiene uno (es inmutable)
 - Un objeto inmutable 
-	- Ej: `int`, `float`, `str`, `tuple`)
+	- Ej: `int`, `float`, `str`, `tuple`
 - Tiene un valor hash que no cambia durante su tiempo de vida
 	- Los valores hash son enteros
 		- Se usan para comparar rápidamente llaves
@@ -456,7 +457,7 @@ Universidad de los Andes
 
 - Retorna `TypeError` 
 	- Si el objeto es mutable (ej: `list`, `dict`)
-- El valor hash puede variar entre versiones de Python
+- El valor hash puede variar entre versiones del intérprete de Python
 	- Y entre diferentes ejecuciones 
 		- En el mismo o diferentes equipos
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
@@ -516,7 +517,7 @@ hash([1, 2, 3])  # → TypeError (Ningún objeto mutable es hasheable)
 	- Para determinar el índice
 - La función hash `h` se define como:
   - `h(x) = |x| mod N`
-- Genera un índice válido dentro del rango `[0, N-1]`
+- Genera un índice válido dentro del rango `[0, N-1]` o  \[`1 a N`\]
 - Asegura una distribución uniforme de índices 
 	- Para una tabla hash con tamaño `N`
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
@@ -526,11 +527,12 @@ hash([1, 2, 3])  # → TypeError (Ningún objeto mutable es hasheable)
 
 - Módulo (%)
 	- La operación de módulo (%) retorna el residuo de una división
-	- `0` y `N-1` para un divisor `N`
 		- Siempre resulta en un número entre 0 y el divisor menos uno 
+			-  `0` y `N-1` para un divisor `N`
 	- Ej:
 		- Si tenemos `N=10`
-			- Cualquier número `x` % `N` estará en el rango de 0 a 9
+			- Cualquier número `x` % `N` 
+				- Estará en el rango de 0 a 9
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -555,14 +557,14 @@ hash([1, 2, 3])  # → TypeError (Ningún objeto mutable es hasheable)
 			- Cuya indexación comienza en `1` en lugar de `0`
 	- Ej:
 		- Si `x` es `37` y `N` es `10`
-		- `37 % 10 = 7 + 1 = 8` que está dentro del rango \[`1`, `N`]\
+		- `37 % 10 = 7 + 1 = 8` que está dentro del rango \[`1`, `N`\]
 - Es comúnmente usado cuando se una tabla hash que inicia desde `1`
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
 ### Método de División - Elección de `N`
 
-- `N` idealmente es un número primo 
+- `N` idealmente es un **número primo**
 	- Para reducir colisiones en la distribución de índices
 - Minimiza interferencia: 
 	- Menos divisores comunes igual a menos índices repetidos
@@ -757,7 +759,10 @@ print(hash_value(table, -3006221771437495133))  # → 72
 ### Ejemplo completo - Python
 
 ```python
-def hashValue(table, key): # Función de hash y de compresión juntas: dada una llave, obtiene un índice con MAD
+# Función de hash y de compresión juntas: dada una llave, 
+# obtiene un índice con MAD
+
+def hashValue(table, key): 
 
     h = (hash(key))
 
@@ -795,18 +800,6 @@ print(hashValue(table, 3.1416))  # → 52
 
 print(hashValue(table, 'Hola Mundo'))  # → 73
 ```
-</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
-<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
-
-### Factor de carga
-
-
-- Razón entre elementos almacenados y capacidad total
-- Medida que indica cuánto está de llena la tabla
-- Cálculo: 
-	- `α = N/M`
-	- `N`: El número de pares <llave, valor>
-	- `M`: Tamaño de la tabla (preferiblemente un número primo)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
