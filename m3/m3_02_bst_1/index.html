@@ -89,7 +89,7 @@
 
 ### Estructura de Datos y Algoritmos - EDA
 
-####  *BST II*
+####  *BST I*
 
 [Eduardo Rosales](mailto:ee.rosales24@uniandes.edu.co)
 
@@ -99,917 +99,594 @@ Universidad de los Andes
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-## Implementación básica de un BST
+### Árbol binario no ordenado (1/2)
 
-- Cada nodo tiene:
-	- Una **llave** (`key`)
-	- Un **valor** asociado (`value`)
-	- Enlaces a un **subárbol izquierdo** y a un **subárbol derecho**
-- Todos los valores **menores** van al **subárbol izquierdo**
-- Todos los valores **mayores** van al **subárbol derecho**
+- **¿Cuál es la complejidad temporal de determinar si el elemento **86** está en el árbol?**
+
+<img src="Pasted image 20250329192617.png" alt="" style="width: 55%; height: 45%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `new_map()`
+### Árbol binario no  ordenado (2/2)
 
-```python
-def new_map():
-    """
-    Crea y retorna una tabla de símbolos ordenada basada en un árbol binario
-    de búsqueda (BST) vacío.
+- **¿Cuál es la complejidad temporal de determinar si el elemento **86** está en el árbol?**
+	- Como el árbol no está ordenado
+		- La complejidad puede ser **O(n)** en el peor caso
 
-    La tabla de símbolos es un diccionario con el siguiente atributo:
-    - root: Raíz del árbol, inicializada en ``None``.
-
-    :returns: Una tabla de símbolos vacía basada en un BST
-    :rtype: dict
-    """
-    bst = {"root": None}
-    return bst
-```
-
-
-- Inicializa un diccionario que servirá como un BST
-
-- La llave "root" apunta a la raíz (inicialmente `None`)
-
-- **¿Complejidad?**
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(1)
+<img src="Pasted image 20250329192617.png" alt="" style="width: 55%; height: 40%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `size_tree()`  (1/2)
-
-```python
-def size_tree(root):
-    """
-    Retorna la cantidad de elementos en el subárbol cuya raíz es el nodo dado.
-
-    :param root: Nodo raíz del subárbol
-    :type root: dict | None
-
-    :returns: Número de elementos en el subárbol
-    :rtype: int
-    """
-    return 0 if root is None else root["size"]
-```
-
-
-- Verifica si el nodo es `None`:
-
-	- Si lo es, no hay nada que contar
-
-- Si no es `None`
-	- Retorna el atributo `"size"` del nodo
-		- "size" se mantiene actualizado en cada inserción o eliminación
+### ¿Cómo buscar de forma eficiente en un árbol binario?
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `size_tree()`  (2/2)
+### Árboles binarios de búsqueda - BST (1/3)
 
-```python
-def size_tree(root):
-    """
-    Retorna la cantidad de elementos en el subárbol cuya raíz es el nodo dado.
-
-    :param root: Nodo raíz del subárbol
-    :type root: dict | None
-
-    :returns: Número de elementos en el subárbol
-    :rtype: int
-    """
-    return 0 if root is None else root["size"]
-```
-
-
-- **¿Complejidad?**
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(1)
+- Árbol binario que cumple estas reglas:
+	- Cada nodo tiene una **llave única y comparable**
+	- Cada nodo puede tener un **valor asociado**
+	- Todos los nodos del **subárbol izquierdo son menores**
+	- Todos los nodos del **subárbol derecho son mayores**
+	- Cada subárbol también es un BST
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `size()` 
+### Árboles binarios de búsqueda - BST (2/3)
 
+- Todos los nodos del **subárbol izquierdo son menores**
+- Todos los nodos del **subárbol derecho son mayores**
 
-```python
-def size(my_bst):
-    """
-    Retorna la cantidad de elementos en la tabla de símbolos basada en un BST.
-
-    :param my_bst: Árbol de búsqueda
-    :type my_bst: dict
-
-    :returns: Número de elementos en el BST
-    :rtype: int
-    """
-    return size_tree(my_bst["root"])
-```
-
-
-- Calcula el tamaño total del BST (cuántos nodos hay)
-
-- La estrategia es invocar a `size_tree()` 
-	- Para contar los nodos **desde la raíz**
-
-- **¿Complejidad?**
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->La misma de `size_tree()`
+<img src="Pasted image 20250329193136.png" alt="" style="object-fit: scale-down">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Separación de responsabilidades
+### Árboles binarios de búsqueda - BST (3/3)
 
-- En el curso se usa un enfoque de 
-	- "función principal + función recursiva"
-- La función **principal** (Ej: `put()`) 
-	- Expone una interfaz limpia
-- Llama a una **función recursiva interna** (Ej: `insert_node()`) 
-	- Que hace el trabajo real
+- Un BST está optimizado para operaciones como las búsquedas:
+-  Dado un valor, se compara con la raíz 
+	- Si es menor, se busca en el subárbol izquierdo
+	- Si es mayor, en el subárbol derecho
+- Este proceso se repite recursivamente 
+	- Hasta encontrar el nodo o hasta llegar a una hoja
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-###  Ventajas de la separación de responsabilidades
-
-- **Claridad y separación de responsabilidades**  
-      - `put()` gestiona el BST completo  
-      - `insert_node()` se enfoca solo en el subárbol recursivo
-    
-- **Reutilización y pruebas más simples**  
-      - La función recursiva se puede probar de forma aislada  
-      - **Se puede usar en otras operaciones internas**
-    
-- **Evita exponer lógica recursiva al usuario final**  
-      - La API pública (`put`, `get`, `remove`) 
-	      - Se mantiene simple y predecible
+### ¿Cómo buscar en un BST?
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Alternativa a la separación de responsabilidades
+### Búsqueda (1/6)
 
-- Usar una función anidada
-	- Definir la función recursiva **dentro de la principal**:
+- Para el siguiente ejemplo
+	- Considere el orden lexicográfico 
 
-```python
-def put(...):     
-    def insert_node(...):       
-    # Lógica recursiva     ...
+	<br>
 
-    # Llamado a la función anidada
-```
-
-
-- **Ventajas**:  
-	- Encapsula completamente la lógica  
-	- Útil si la función recursiva es muy específica y no se reutiliza
-    
-- **Desventajas**:  
-	- Menos legible si crece 
-	- No reutilizable fuera de su contexto
+- **Recuerde:**
+	- Si es menor, se busca en el subárbol izquierdo
+	- Si es mayor, en el subárbol derecho
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-## `is_empty()`
+### Búsqueda (2/6)
 
-```python
-def is_empty(my_bst):
-    """
-    Informa si la tabla de símbolos (BST) está vacía.
-
-    :param my_bst: El árbol de búsqueda
-    :type my_bst: dict
-
-    :returns: True si está vacío, False en caso contrario
-    :rtype: bool
-    """
-    return my_bst["root"] is None
-```
-
-
-- Verifica si la raíz `"root"` del BST es `None`
-	- `True` si no hay nodos (BST vacío)
-	- `False` si existe al menos un nodo
-		- `my_bst["root"]`sería distinto de `None`
-
-- **¿Complejidad?**
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->O(1)
+<img src="Pasted image 20250329202657.png" alt="" style="width: 50%; height: 40%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `insert_node()`  (1/9)
+### Búsqueda (3/6)
 
-```python
-def insert_node(root, key, value):
-    """
-    Inserta una pareja (key, value) en un BST.
-
-    - Si el árbol está vacío (root es None), se crea un nodo con la llave 
-      y el valor.
-    - Si la llave ya existe, se reemplaza el valor.
-    - Si la nueva llave es menor, se inserta recursivamente en el subárbol
-      izquierdo.
-    - Si es mayor, se inserta en el subárbol derecho.
-
-    :param root: Raíz del árbol o None si está vacío.
-    :type root: dict
-    :param key: Llave a insertar o actualizar.
-    :type key: any
-    :param value: Valor asociado a la llave.
-    :type value: any
-    :returns: Nodo raíz actualizado después de la inserción.
-    :rtype: dict
-    """
-```
+<img src="Pasted image 20250329202735.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `insert_node()`  (2/9)
+### Búsqueda (4/6)
 
-```python
-def insert_node(root, key, value):
-    """
-    ...
-    - Si el árbol está vacío (root es None), se crea un nodo con la llave 
-      y el valor.
-    ...
-    """
-    if root is None:
-        root = {
-            "key": key,
-            "value": value,
-            "size": 1,
-            "left": None,
-            "right": None,
-        }
-    ...
-```
-
-- Como el árbol está vacío
-	- Se inserta el primer nodo
-- Nota: `bst_node.py`  contiene la función: `new_node(key, value)`
-	- En su implementación de un BST
-		- Se debería usar esta función
+<img src="Pasted image 20250329202819.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `insert_node()`  (3/9)
+### Búsqueda (5/6)
 
-```python
-def insert_node(root, key, value):
-    """
-    ...
-    - Si la llave ya existe, se reemplaza el valor.
-    ...
-    """
-    ...
-    elif key == root["key"]:
-        root["value"] = value
-    ...
-```
-
-- Como la llave ya existe
-	- Se trata solo de una actualización del valor
+<img src="Pasted image 20250329202842.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `insert_node()`  (4/9)
+### Búsqueda (6/6)
 
-```python
-def insert_node(root, key, value):
-    """
-    ...
-    - Si es menor, se inserta en el subárbol izquierdo.
-    - Si es mayor, se inserta en el subárbol derecho.
-    ...
-    """
-    ...
-    else:
-        if key < root["key"]:
-            root["left"] = insert_node(root["left"], key, value)
-        else:
-            root["right"] = insert_node(root["right"], key, value)
-    ...
-```
-
-- El árbol no está vacío y la llave no existe, entonces
-	- Se hace la inserción siguiendo las reglas BST
-	- Valor menor:
-		- Insertar recursivamente a la izquierda
-	- Valor mayor:
-		- Insertar recursivamente a la derecha
+<img src="Pasted image 20250329202902.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `insert_node()`  (5/9)
-
-```python
-        if key < root["key"]:
-            root["left"] = insert_node(root["left"], key, value)
-        else:
-            root["right"] = insert_node(root["right"], key, value)
-```
-
-- Se debe llegar al lugar correcto de inserción
-    - Si `key < root["key"]`:
-        - **Repite** la lógica de inserción en el **subárbol izquierdo**
-        - Resultado de la recursión se asigna a `root["left"]`
-            
-    - Si `key > root["key"]`:
-        - **Repite** la lógica de inserción en el **subárbol derecho**
-        - Resultado de la recursión se asigna a `root["right"]`
+### Ahora comprendamos una búsqueda fallida
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `insert_node()`  (6/9)
+### Búsqueda fallida (1/6)
 
-```python
-    if root is None:
-        root = {
-            "key": key,
-            "value": value,
-            "size": 1,
-            "left": None,
-            "right": None,
-        }
-    ...
-        if key < root["key"]:
-            root["left"] = insert_node(root["left"], key, value)
-        else:
-            root["right"] = insert_node(root["right"], key, value)
-```
-
-- El llamado recursivo eventualmente llegará a
-	- `root == None`
-- Ese será el **caso base**
-	- Donde se **crea un nuevo nodo**
+<img src="Pasted image 20250329202919.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `insert_node()`  (7/9)
+### Búsqueda fallida (2/6)
 
-```python
-    else:
-        if key < root["key"]:
-            root["left"] = insert_node(root["left"], key, value)
-        else:
-            root["right"] = insert_node(root["right"], key, value)
-
-        # Actualizar el tamaño del subárbol solo si hubo inserción:
-        root["size"] = 1 + size_tree(root["left"]) + size_tree(root["right"])
-```
-
-- Finalmente, se recalcula el tamaño del BST
-	- Esto **únicamente** se hace cuando hubo inserción
-		- No en actualización
+<img src="Pasted image 20250329203001.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `insert_node()`  (8/9)
+### Búsqueda fallida (3/6)
 
-```python[15]
-def insert_node(root, key, value):
-    if root is None:
-        ...
-
-    elif key == root["key"]:
-        ...
-
-    else:
-        if key < root["key"]:
-            ...
-        else:
-            ...
-        root["size"] = 1 + size_tree(root["left"]) + size_tree(root["right"])
-        
-    return root
-```
-
-- Es importante comprender que se retorna
-	- **La raíz** del árbol ya actualizado
+<img src="Pasted image 20250329203048.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `insert_node()`  (9/9)
+### Búsqueda fallida (4/6)
 
-- **¿Complejidad?**
-
-	-  **Mejor caso: O(1)**  
-	  - Si el árbol está vacío (`root is None`)  
-		  - Se crea un nodo sin llamadas recursivas  
-			 
-	  
-	- **Caso promedio: ≈ O(log n)**  
-		- BST balanceado
-			- Se hacen ≈ log n llamadas recursivas  
-	  
-	- **Peor caso: ≈ O(n)**
-		- BST desbalanceado (ej: inserciones ordenadas) 
-			- Puede convertirse en árbol degenerado
-			- Se recorren todos los niveles hasta encontrar posición
+<img src="Pasted image 20250329203113.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `put()`
+### Búsqueda fallida (5/6)
 
-``` python
-def put(my_bst, key, value):
-    """
-    Inserta una pareja (key, value) en el árbol binario de búsqueda (BST).
-
-    - Si la llave no existe, se inserta un nuevo nodo.
-    - Si la llave ya existe, se reemplaza su valor.
-
-    :param my_bst: Árbol binario de búsqueda (BST).
-    :type my_bst: dict
-    :param key: Llave a insertar o actualizar.
-    :type key: any
-    :param value: Valor asociado a la llave.
-    :type value: any
-    :returns: BST actualizado.
-    :rtype: dict
-    """
-    my_bst["root"] = insert_node(my_bst["root"], key, value)
-    return my_bst
-```
-
-- `insert_node()` retorna la raíz del árbol actualizado
-	- Entonces, esta se asigna como la **nueva raíz** del árbol que recibe `put()`
-	
-- **¿Complejidad?**
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->La misma de `insert_node()`
+<img src="Pasted image 20250329203134.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `get_node()` (1/3)
+### Búsqueda fallida (6/6)
 
-
-```python
-def get_node(root, key):
-    """
-    Busca una llave en el subárbol dado y retorna su valor asociado.
-
-    Si la llave no está presente, retorna None.
-
-    :param root: Nodo raíz del subárbol actual.
-    :type root: dict or None
-    :param key: Llave a buscar.
-    :type key: any
-    :return: Valor asociado a la llave, o None si no se encuentra.
-    :rtype: any
-    """
-```
+<img src="Pasted image 20250329203158.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `get_node()` (2/3)
+###  Quiz I
 
+- ¿Cuál es la altura del siguiente árbol?
 
-```python
-def get_node(root, key):
-    result = None
-
-    if root is not None:
-        if key == root["key"]:
-            result = root["value"]
-        elif key < root["key"]:
-            result = get_node(root["left"], key)
-        else:
-            result = get_node(root["right"], key)
-
-    return result
-```
-
-- Compara la llave buscada con la del nodo actual:
-	- Igual → retorna el valor
-	- Menor → busca en el subárbol izquierdo
-	- Mayor → busca en el subárbol derecho
-Caso base:
-- Si root es `None`
-	- La llave no existe y retorna `None`
+<img src="Pasted image 20250329203810.png" alt="" style="width: 55%; height: 40%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `get_node()` (2/3)
+###  Quiz I - Solución
 
-- **Mejor caso: O(1)**  
-  - Si la llave buscada es la raíz (`key == root["key"]`)  
-  - Una comparación  
-	  - Sin llamadas recursivas
-    
-- **Caso promedio: ≈ O(log n)**  
-  - BST balanceado
-	  - Se recorren ≈ log n niveles hasta encontrar la llave  
-  - Una comparación y una llamada recursiva por nivel
-    
-- **Peor caso: ≈ O(n)**  
-  - BST desbalanceado 
-	  - Puede convertirse en árbol degenerado
-	  - Se recorren hasta `n` nodos en línea recta
+- ¿Cuál es la altura del siguiente árbol?
+	- **4**
+
+<img src="Pasted image 20250329203810.png" alt="" style="width: 55%; height: 40%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `get()`
+###  Quiz II
 
-```python
-def get(my_bst, key):
-    """
-    Busca una llave en el BST y retorna su valor asociado.
+- ¿Cuántas comparaciones se requieren para encontrar el elemento **22**?
 
-    Retorna None si la llave no está presente.
-
-    :param my_bst: Árbol binario de búsqueda (BST).
-    :type my_bst: dict
-    :param key: Llave a buscar.
-    :type key: any
-    :return: Valor asociado a la llave, o None si no se encuentra.
-    :rtype: any
-    """
-    return get_node(my_bst["root"], key)
-```
-
-
-- Solo llama a `get_node()` pasando la raíz `my_bst["root"]`
-	- Retorna el **valor asociado** a la llave, si existe
-	- Si la llave **no está en el árbol**, retorna `None`
-
-- **¿Complejidad?**
-	- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->La misma de `get_node()`
+<img src="Pasted image 20250329203810.png" alt="" style="width: 55%; height: 40%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Otras operaciones en BSTs
+###  Quiz II - Solución
+
+- ¿Cuántas comparaciones se requieren para encontrar el elemento **22**?
+	- Número de comparaciones ≈ `h+1` (altura del árbol + 1)
+		- Número de comparaciones ≈ **4 comparaciones**
+
+<img src="Pasted image 20250329203810.png" alt="" style="width: 50%; height: 35%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-###  `floor()` en un BST
+### Balance del BST (1/5)
+
+- En un BST balanceado
+	- La altura sería proporcional a **log2(n)**
+		- `h ≈ log2​(n)`
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `floor()`
+### Balance del BST (2/5)
 
-- Dado un BST y una llave `key`, retorna:
+- ¿Cuántas comparaciones se requieren para encontrar el elemento **22**?
+	- **log2(n)** comparaciones
+		- `○log2(11) ≈ 3.46 ≈`  **`4`**
 
-	- La **mayor llave** del árbol que sea **≤ key**:
-    
-		- Si `key` está en el árbol → retorna `key`
-    
-		- Si no está → retorna la mayor que sea menor a `key`
-    
-		- Si no existe ninguna → retorna `None`
+<img src="Pasted image 20250329203810.png" alt="" style="width: 45%; height: 30%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Estudiemos los tres casos
+### Balance del BST (3/5)
 
+- ¿Por qué es importante?
 
-
-<!-- .slide: class="has-light-background" data-background-color="#f8f8f8" -->
+	- Un árbol balanceado mantiene su altura más baja
+	- Esto garantiza operaciones eficientes:
+		- Búsqueda
+		- Inserción
+		- Eliminación
+  - La complejidad se mantiene tiende a **O(log n)**
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Caso 1: Key está en el árbol (1/2)
+### Balance del BST (4/5)
 
-- `floor(9)` → `9`
-
-<img src="eda/img/floor_ej.png" alt="" style="width: 20%; height: 40%; object-fit: fill">
+- Si un árbol está desbalanceado:
+  - Se asemeja a **una estructura lineal**
+	  - Como una lista enlazada
+  - En ese caso, buscar, insertar o eliminar 
+	  - Puede tomar **O(n)**
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Caso 1: Key está en el árbol (2/2)
-
-<img src="eda/img/floor_ej.png" alt="" style="width: 15%; height: 30%; object-fit: fill">
+### Balance del BST (5/5)
 
 
-- **Nodo 8**:
-    
-    - `9 > 8` → Posible `floor = 8`
-	    - Ir a la derecha
-        
-- **Nodo 10**:
-    - `9 < 10` → Ir a la izquierda
-        
-- **Nodo 9**:
-    - `9 == 9` → Coincidencia exacta
+<img src="Pasted image 20250329203626.png" alt="" style="width: 65%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Caso 2: Key no está en el árbol - más cercano menor (1/2)
+### Árbol binario degenerado (1/4)
 
-- `floor(7)` → `4`
-
-<img src="eda/img/floor_ej.png" alt="" style="width: 20%; height: 40%; object-fit: fill">
+<img src="Pasted image 20250329204551.png" alt="" style="width: 65%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Caso 2: Key no está en el árbol - más cercano menor (2/2)
+### Árbol binario degenerado (2/4)
 
-<img src="eda/img/floor_ej.png" alt="" style="width: 15%; height: 30%; object-fit: fill">
+<img src="Pasted image 20250329204815.png" alt="" style="width: 45%; height: 35%; object-fit: fill">
 
 
-- **Nodo 8**:    
-    - `7 < 8` → Ir a la izquierda
-        
-- **Nodo 4**:
-    - `7 > 4` → posible floor = 4
-	    - Ir a la derecha (no hay nada)
-        
-- No se encuentra un mejor candidato → se retorna **4**
+- Cada nodo tiene como máximo un hijo
+	- En una sola línea
+		- Típicamente sin bifurcaciones
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Caso 3: Key no está en el árbol - no existe floor (1/2)
+### Árbol binario degenerado (3/4)
 
-- `floor(3)` → `None`
 
-<img src="eda/img/floor_ej.png" alt="" style="width: 20%; height: 40%; object-fit: fill">
+- ¿Cuántas comparaciones se requieren para encontrar el elemento 6?
+
+	- 6 comparaciones (altura del árbol + 1)
+
+<img src="Pasted image 20250329204815.png" alt="" style="width: 45%; height: 35%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Caso 3: Key no está en el árbol - no existe floor (2/2)
-
-<img src="eda/img/floor_ej.png" alt="" style="width: 15%; height: 30%; object-fit: fill">
+### Árbol binario degenerado (4/4)
 
 
-- **Nodo 8**:    
-    - `3 < 8` → Ir a la izquierda
-        
-- **Nodo 4**:
-    - `3 < 4`
-	    - Ir a la izquierda (no hay nada)
-        
-- No se encuentra un mejor candidato → se retorna `None`
+- ¿Cuál es la complejidad temporal de la búsqueda del elemento 7?
+
+
+<img src="Pasted image 20250329204815.png" alt="" style="width: 45%; height: 35%; object-fit: fill">
+
+
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Si el BST no está balanceado
+	- La complejidad temporal de una búsqueda tenderá a **O(n)**
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `floor()`- Ideas clave de implementación
+### Complejidad temporal de la búsqueda
 
-- Al recorrer el árbol:
-    - Si `key == node.key` → retorno inmediato
-    - Si `key < node.key` → búsqueda en el subárbol izquierdo
-    - Si `key > node.key`:
-        - Buscar en subárbol derecho
-        - Si se encuentra algo → retornarlo
-        - Si no → retornar el nodo actual como mejor candidato
+- Mejor caso - **O(1)**
+	-  Si el elemento está en la raíz
+
+- Promedio - **O(log⁡n)**
+	- Árbol balanceado
+
+- Peor caso - **O(n)**
+	- Árbol desbalanceado
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `floor()` - Complejidad temporal
-
-- **Mejor caso: O(1)**
-    
-    - Si `key` está en la raíz
-        
-- **Caso promedio: O(log n)**
-    
-    - Si el árbol está balanceado
-        
-- **Peor caso: O(n)**
-    
-    - Si el árbol está desbalanceado
+### ¿Cómo insertar en un BST?
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Quiz I
- 
-- Encuentre  `floor(7)`
+### Inserción
 
-<img src="eda/img/floor_0.png" alt="" style="width: 35%; height: 55%; object-fit: fill">
+- Dado un valor, se compara con la raíz 
+- Si es menor, se busca en el subárbol izquierdo
+- Si es mayor, en el subárbol derecho
+- Este proceso se repite recursivamente 
+	- Hasta encontrar el espacio en donde insertar el nodo
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Quiz I - Solución (1/3)
+### Inserción (1/7)
 
-<img src="eda/img/floor_1.png" alt="" style="object-fit: scale-down">
+- Para el siguiente ejemplo
+	- Considere el orden lexicográfico 
 
+	<br>
 
-**Nodo actual = 10**
-
-- `7 < 10`
-	- Subárbol izquierdo
+- **Recuerde:**
+	- Si es menor, se busca  el espacio en el subárbol izquierdo
+	- Si es mayor, en el subárbol derecho
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Quiz I - Solución (2/3)
- 
+### Inserción (2/7)
 
-<img src="eda/img/floor_2.png" alt="" style="object-fit: scale-down">
-
-
-**Nodo actual = 5**
-
-- `7 > 5` 
-	- Posible candidato → 5
-    
-- Ir a la derecha para buscar un mejor valor
+<img src="Pasted image 20250329205446.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Quiz I - Solución (3/3)
+### Inserción (3/7)
 
-<img src="eda/img/floor_3.png" alt="" style="object-fit: scale-down">
-
-
-**Nodo actual = 6**
-
-- `7 > 6`
-	- Mejor candidato →  6
-    
-- Ir a derecha → es `None`
-	- No se encuentra valor más cercano 
-		- Se retorna el último válido (**6**)
+<img src="Pasted image 20250329205517.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `ceiling()`
+### Inserción (4/7)
 
-- Dado un BST y una llave `key`, retorna:
-    
-    - La **menor llave** del árbol que sea **≥ key**
-        
-        - Si `key` está en el árbol → retorna `key`
-            
-        - Si no está → retorna la menor que sea mayor a `key`
+<img src="Pasted image 20250329205538.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Estudiemos los tres casos
+### Inserción (5/7)
 
-
-
-<!-- .slide: class="has-light-background" data-background-color="#f8f8f8" -->
+<img src="Pasted image 20250329205603.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Caso 1: Key está en el árbol (1/2)
+### Inserción (6/7)
 
-- `ceiling(9)` → `9`
-
-<img src="eda/img/floor_ej.png" alt="" style="width: 30%; height: 50%; object-fit: fill">
+<img src="Pasted image 20250329205628.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Caso 1: Key está en el árbol (2/2)
+### Inserción (7/7)
 
-<img src="eda/img/floor_ej.png" alt="" style="width: 15%; height: 30%; object-fit: fill">
-
-
-- **Nodo 8**:
-    
-    - `9 > 8` → Ir a la derecha
-        
-- **Nodo 10**:
-    
-    - `9 < 10` → Ir a la izquierda
-        
-- **Nodo 9**:
-    
-    - `9 == 9` → Coincidencia exacta → se retorna `9`
+<img src="Pasted image 20250329205649.png" alt="" style="width: 55%; height: 50%; object-fit: fill">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Caso 2: Key no está en el árbol - más cercano mayor (1/2)
+### Complejidad temporal de la inserción (1/4)
 
-- `ceiling(7)` → `8`
+- Mejor caso
+	- Las llaves se insertan en la raíz o cercano a ella
 
-<img src="eda/img/floor_ej.png" alt="" style="width: 30%; height: 50%; object-fit: fill">
+<img src="Pasted image 20250329205821.png" alt="" style="object-fit: scale-down">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Caso 2: Key no está en el árbol - más cercano mayor (2/2)
+### Complejidad temporal de la inserción (2/4)
 
-<img src="eda/img/floor_ej.png" alt="" style="width: 15%; height: 30%; object-fit: fill">
+- Caso promedio
+	- Las llaves llegan en forma aleatorio
 
 
-- **Nodo 8**:
-    
-    - `7 < 8` → Posible ceiling = 8
-        
-        - Ir a la izquierda
-            
-- **Nodo 4**:
-    
-    - `7 > 4` → Ir a la derecha (no hay nada)
-        
-- No se encuentra mejor candidato → se retorna **8**
+<img src="Pasted image 20250329205845.png" alt="" style="object-fit: scale-down">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Caso 3: Key no está en el árbol - no existe ceiling (1/2)
+### Complejidad temporal de la inserción (3/4)
 
-- `ceiling(16)` → `None`
+- Peor caso
+	- Las llaves **llegan en orden**
 
-<img src="eda/img/floor_ej.png" alt="" style="width: 30%; height: 50%; object-fit: fill">
+
+<img src="Pasted image 20250329205905.png" alt="" style="object-fit: scale-down">
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Caso 3: Key no está en el árbol - no existe ceiling (2/2)
+### Complejidad temporal de la inserción (4/4)
 
-<img src="eda/img/floor_ej.png" alt="" style="width: 15%; height: 30%; object-fit: fill">
+- Mejor caso - **O(1)**
+	-  Si el elemento está en la raíz
 
+- Promedio - **O(log⁡n)**
+	- Árbol balanceado
 
-- **Nodo 8**:
-    
-    - `16 > 8` → Ir a la derecha
-        
-- **Nodo 10**:
-    - `16 > 10` → Ir a la derecha (no hay nada)
-        
-- No se encuentra un nodo válido → se retorna `None`
+- Peor caso - **O(n)**
+	- Árbol desbalanceado
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `ceiling()` - Ideas clave de implementación
-
-- Al recorrer el árbol:
-    
-    - Si `key == node.key` → retorno inmediato
-        
-    - Si `key > node.key` → búsqueda en el subárbol derecho
-        
-    - Si `key < node.key`:
-        
-        - Buscar en subárbol izquierdo
-            
-        - Si se encuentra algo → retornarlo
-            
-        - Si no → retornar el nodo actual como mejor candidato
+### ¿Cómo eliminar en un BST?
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### `ceiling()` - Complejidad temporal
+### Eliminación
 
-- **Mejor caso: O(1)**
-    - Si `key` está en la raíz
-        
-- **Caso promedio: O(log n)**
-    - Si el árbol está balanceado
-        
-- **Peor caso: O(n)**
-    - Si el árbol está desbalanceado
+- Requiere conservar las reglas del árbol
+- Existen 3 casos posibles
+	- Según los hijos del nodo a eliminar
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Quiz II
- 
-- Encuentre  `ceiling(8)`
+### Eliminación - Caso 1: Nodo sin hijos (hoja)
 
-<img src="eda/img/ceiling_0.png" alt="" style="width: 75%; height: 65%; object-fit: fill">
+- El nodo simplemente se elimina
+- No afecta la estructura del árbol
+- Es el caso más sencillo
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Quiz II - Solución (1/4)
+### Eliminación - Caso 2: Nodo con 1 hijo
 
-<img src="eda/img/ceiling_1.png" alt="" style="width: 45%; height: 45%; object-fit: fill">
-
-
-**Nodo actual = 10**
-
-- `8 < 10`
-    
-    - Posible candidato → **10**
-        
-    - Ir al subárbol izquierdo para encontrar un valor más pequeño
+- Se elimina el nodo
+- Su hijo se conecta directamente con el padre del nodo eliminado
+	- El árbol sigue cumpliendo las reglas del BST
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Quiz II - Solución (2/4)
+### Eliminación - Caso 3: Nodo con 2 hijos
 
-<img src="eda/img/ceiling_2.png" alt="" style="width: 45%; height: 45%; object-fit: fill">
-
-
-**Nodo actual = 5**
-
-- `8 > 5`
-    
-    - Ir al subárbol derecho para buscar un valor más cercano o igual a 8
+- Hay dos formas comunes de resolver
+	- Opción 1: Marcador especial
+	- Opción 2: Reemplazo
+		- Sucesor
+		- Predecesor
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Quiz II - Solución (3/4)
+### Caso 3 - Opción 1: Marcador especial
 
-<img src="eda/img/ceiling_3.png" alt="" style="width: 45%; height: 45%; object-fit: fill">
-
-
-**Nodo actual = 6**
-
-- `8 > 6`
-    
-    - Ir al subárbol derecho
+- Se reemplaza el nodo por un **marcador especial** 
+	- Ej: un valor nulo o bandera
+- No es una opción muy usada en la práctica
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Quiz II - Solución (4/4)
+### Caso 3 - Opción 1 - Ejemplo
 
-<img src="eda/img/ceiling_3.png" alt="" style="width: 40%; height: 40%; object-fit: fill">
+<img src="Pasted image 20250329210711.png" alt="" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Caso 3 - Opción 2: Reemplazo
+
+- Se busca un nodo que pueda reemplazar el eliminado:
+
+  - **Sucesor inorden**: El nodo más pequeño en el subárbol derecho ó
+  - Predecesor inorden: El nodo más grande en el subárbol izquierdo
+
+- Ese nodo reemplaza al que se quiere eliminar
+- Luego se elimina el sucesor o predecesor
+	- Que tendrá 0 o 1 hijo
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Comprendamos la eliminación con ejemplos de cada caso
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Eliminación - Ejemplo (1/8)
+
+
+- Para el siguiente ejemplo
+	- Considere el orden lexicográfico 
+
+	<br>
+
+- **Recuerde:**
+	- Si es menor, se busca  el espacio en el subárbol izquierdo
+	- Si es mayor, en el subárbol derecho
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Eliminación - Ejemplo (2/8)
+
+
+- Dado el siguiente árbol binario ordenado
+	- Se explorará los 3 estados en los que quedaría el árbol 
+		- Al hacer los 3 casos de eliminaciones
+
+<img src="Pasted image 20250329211720.png" alt="" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Eliminación - Ejemplo (3/8)
+
+- Eliminación del nodo **"I"**
+
+<img src="Pasted image 20250329211720.png" alt="" style="object-fit: scale-down">
+
+
+- **Tip:** Se trata del caso de la eliminación de un nodo con un solo hijo
+	- Aquí se reemplaza el nodo a borrar, con el único hijo tiene
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-auto-animate="true" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Eliminación - Ejemplo (4/8)
+
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+
+  <a href="https://eerosales24.github.io/eda_2025_10/m3/e1.png" target="_blank">
+    <img src="https://eerosales24.github.io/eda_2025_10/m3/e1.png" alt="Imagen 1" style="width: 250px; height: auto; border-radius: 8px;" ></img>
+  </a>
+
+  <a href="https://eerosales24.github.io/eda_2025_10/m3/e20.png" target="_blank">
+    <img src="https://eerosales24.github.io/eda_2025_10/m3/e20.png" alt="Imagen 2" style="width: 250px; height: auto; border-radius: 8px;" ></img>
+  </a>
+
+</div>
+
+- En la eliminación de un nodo con un solo hijo
+	- Se reemplaza el nodo a borrar, con el único hijo tiene
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Eliminación - Ejemplo (5/8)
+
+- Eliminación del nodo **"E"**
+
+<img src="Pasted image 20250329211950.png" alt="" style="object-fit: scale-down">
+
+
+- **Tip:** Se trata del caso de la eliminación de un nodo hoja
+	- Aquí solo se borra el nodo hoja
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-auto-animate="true" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Eliminación - Ejemplo (6/8)
 
 
 
-**Nodo actual = 9**
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
 
-- `8 < 9`
-    
-    - Posible candidato → **9**
-        
-    - Ir al subárbol izquierdo → es `None`
-    
-- ceiling(8) = 9
+  <a href="https://eerosales24.github.io/eda_2025_10/m3/e2.png" target="_blank">
+    <img src="https://eerosales24.github.io/eda_2025_10/m3/e2.png" alt="Imagen 1" style="width: 280px; height: auto; border-radius: 8px;" ></img>
+  </a>
+
+  <a href="https://eerosales24.github.io/eda_2025_10/m3/e30.png" target="_blank">
+    <img src="https://eerosales24.github.io/eda_2025_10/m3/e30.png" alt="Imagen 2" style="width: 250px; height: auto; border-radius: 8px;" ></img>
+  </a>
+
+</div>
+
+
+ - En la eliminación de un nodo hoja
+	- Solo se borra la hoja
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Eliminación - Ejemplo (7/8)
+
+- Eliminación del nodo **"S"**
+
+<img src="Pasted image 20250329212749.png" alt="" style="object-fit: scale-down">
+
+
+- **Tip:** Se trata del caso de la eliminación de un nodo con dos hijos. Aquí se debe encontrar el sucesor inmediato (el nodo más a la izquierda del subárbol derecho​). Reemplazar el nodo a eliminar con el sucesor. Re-balancear el árbol si es necesario
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-auto-animate="true" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Eliminación - Ejemplo (8/8)
+
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+
+  <a href="https://eerosales24.github.io/eda_2025_10/m3/e3.png" target="_blank">
+    <img src="https://eerosales24.github.io/eda_2025_10/m3/e3.png" alt="Imagen 1" style="width: 250px; height: auto; border-radius: 8px;" ></img>
+  </a>
+
+  <a href="https://eerosales24.github.io/eda_2025_10/m3/e4.png" target="_blank">
+    <img src="https://eerosales24.github.io/eda_2025_10/m3/e4.png" alt="Imagen 2" style="width: 300px; height: auto; border-radius: 8px;" ></img>
+  </a>
+
+</div>
+
+
+- Eliminación del nodo **`"S"`**, después de usar el sucesor **`"U"`**:
+	- Encontrar el sucesor inmediato 
+		- **El nodo más a la izquierda del subárbol derecho​**
+			- Reemplazar el nodo a eliminar con el sucesor
+				- Re-balancear el árbol si es necesario
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Complejidad temporal de la eliminación
+
+- Mejor caso - **O(1)**
+	-  Si el elemento está en la raíz
+
+- Promedio - **O(log⁡n)**
+	- Árbol balanceado
+
+- Peor caso - **O(n)**
+	- Árbol desbalanceado
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
