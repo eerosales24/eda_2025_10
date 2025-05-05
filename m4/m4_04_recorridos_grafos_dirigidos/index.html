@@ -208,6 +208,11 @@ Universidad de los Andes
 ### Orden topológico (3/4) - DAG
 
 <img src="Pasted image 20250429120352.png" alt="" style="object-fit: scale-down">
+
+
+
+
+<!-- .slide: class="has-light-background" data-background-color="#f8f8f8" -->
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -345,7 +350,115 @@ Universidad de los Andes
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Continuará ...
+### Comprendamos una forma más ágil de hacer DFO
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="Pasted image 20250429120352.png" alt="" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="Pasted image 20250504101050.png" alt="" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### DFO en grafos con ciclos (1/2)
+
+- Se puede aplicar DFO en grafos con ciclos
+    
+- El orden de finalización se basa en
+	- Cuándo se termina de explorar un nodo en DFS
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### DFO en grafos con ciclos (2/2)
+
+- Útil para:
+    - Detectar ciclos (si hay retroaristas)
+    - Clasificar nodos según dependencia **parcial** (no total)
+    
+<br>
+
+- **Limitaciones**:
+    - No hay garantía de un orden topológico válido
+	    - Hay ordenes topológicos con suposiciones/limitaciones
+		    - No se garantiza jerarquía ni dependencia completa entre nodos
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Comprendamos cómo usar DFO con grafos cíclicos
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Ejemplos detallados de DFO con ciclos
+
+
+- [Ejemplos DFO con ciclos](https://eerosales24.github.io/eda_2025_10/m4/dfo_ciclos.ppsx)
+
+<br>
+
+
+\* Para mejor visibilidad, por favor abrir los archivos en PowerPoint
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### DFO – Optimalidad
+
+- DFO **no garantiza** ningún tipo de camino óptimo
+    
+- No sirve para encontrar caminos más cortos o eficientes
+    
+- Solo refleja el **orden de finalización** de DFS
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### DFO – Complejidad temporal
+
+- DFO requiere un recorrido DFS completo: **O(V + E)**
+    
+- Construir listas de:
+    
+    - **Preorden**: O(V)
+        
+    - **Postorden**: O(V)
+        
+    - **Postorden inverso (DFO)**: O(V)
+        
+- Tiempo total (DFS + ordenamientos): **O(V + E)**
+    
+    - Dominado por el recorrido DFS
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### DFO – Complejidad espacial
+
+- Marcas de visitado: **O(V)**
+    
+- Pila de recursión (implícita o explícita): **O(V)** en el peor caso
+
+- Almacenar preorden, postorden, y postorden inverso: **O(V)** cada uno
+    
+- Espacio total (DFS + órdenes): **O(V)**
+    
+    - Hasta **O(4V)** si se guardan todas las variantes
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### M4-HT-1
+
+1. Complete la hoja de trabajo de DFS, BFS y DFO  ([**M4-HT-1**](https://eerosales24.github.io/eda_2025_10/m4/m4_ht_1.pdf))
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<i class="fas fa-question-circle fa-2x fa-spin fa-4x"></i>
+
+
+
+<br>
+<br>
+
+
+[<i class="fas fa-home  fa-3x"></i>](https://eerosales24.github.io/eda_2025_10/#)
 </div></script></section></div>
     </div>
 
