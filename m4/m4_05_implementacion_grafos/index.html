@@ -346,7 +346,7 @@ visited_map = dfs_vertex(my_graph, source, visited_map)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### dfs() (5/5)
+### `dfs()` (5/5)
 
 ```python
 def dfs(my_graph, source):
@@ -444,9 +444,11 @@ def has_path_to(key_v, visited_map):
 
 - Verificar si el vértice destino está en el mapa de visitados:
     - Si está:
-        - Retornar `True`  # Existe un camino desde el origen
+        - Retornar `True`  
+	        - Existe un camino desde el origen
     - Si no está:
-        - Retornar `False`  # No hay camino registrado
+        - Retornar `False`  
+	        - No hay camino registrado
 
 - Tip: Hay una operación en un mapa que hace lo anterior
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
@@ -482,7 +484,8 @@ def path_to(key_v, visited_map):
 - Crear una pila vacía para guardar el camino
 
 - Si el vértice destino no está en `visited_map`:
-    - Retornar `None`  # no hay camino desde el origen
+    - Retornar `None`  
+	    -  No hay camino desde el origen
 
 - Asignar el vértice actual como el destino
 
@@ -539,10 +542,7 @@ visited_map = map.new_map(
 - Marcar el vértice inicial:
     
 ```python
-map.put(visited_map, source, {
-    "edge_from": None,
-    "dist_to": 0
-})
+map.put(visited_map, source, {"edge_from": None, "dist_to": 0})
 ```
 
 Se registra el vértice de inicio (`source`)
@@ -581,7 +581,8 @@ def bfs(my_graph, source):
     :type my_graph: dict
     :param source: Llave del vértice desde el cual inicia el recorrido.
     :type source: any
-    :return: Mapa con información de los vértices visitados, distancias y origen de cada uno.
+    :return: Mapa con información de los vértices visitados, distancias y 
+    origen de cada uno.
     :rtype: dict
     """
     visited_map = map.new_map(num_elements=digraph.order(my_graph), load_factor=0.5)
@@ -592,7 +593,249 @@ def bfs(my_graph, source):
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
-### Continuará ...
+### Algunos detalles de implementación de DFO
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `new_dfo_structure()` (1/5)
+
+
+- Objetivo:
+	- Crear una estructura para almacenar el estado del recorrido DFO
+	- Se usa en `dfo()` y `dfs_vertex()`
+	- La estructura permite:
+	    - Marcar vértices visitados
+	    - Registrar el orden de visita (pre, post, reverso)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `new_dfo_structure()` (2/5)
+
+```python
+def new_dfo_structure(g_order):
+    """
+    Crea una estructura de búsqueda para almacenar los resultados del recorrido DFO.
+
+    Incluye un mapa de vértices visitados (`marked`), una cola para el preorden
+    (`pre`), una cola para el postorden (`post`) y una pila para el postorden
+    inverso (`reversepost`).
+
+    :param g_order: Número de vértices del grafo.
+    :type g_order: int
+
+    :returns: Estructura de búsqueda vacía para DFO.
+    :rtype: dfo_search
+    """
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `new_dfo_structure()` (3/5)
+
+```plaintext
+dfo_structure = {
+    'marked': null,
+    'pre': new_queue(),
+    'post': new_queue(),
+    'reversepost': new_stack()
+}
+```
+
+- Nota: Esto es un solo un pseudocódigo para dar una idea de la implementación
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `new_dfo_structure()` (4/5)
+
+```plaintext
+dfo_structure = {
+    'marked': null,
+    'pre': new_queue(),
+    'post': new_queue(),
+    'reversepost': new_stack()
+}
+```
+
+Se crea un diccionario con 4 llaves:
+
+- `marked`: inicialmente en un valor nulo
+- `pre`: cola vacía para registrar el preorden
+- `post`: cola vacía para registrar el postorden
+- `reversepost`: pila vacía para el postorden inverso
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `new_dfo_structure()` (5/5)
+
+```plaintext
+dfo_structure["marked"] = new_map(num_elements=g_order, load_factor=0.5)
+retorno dfo_structure
+```
+
+- La estructura para manejar la marcación puede ser un mapa
+
+- Tamaño inicial es el número de vértices (g_order)
+
+- Factor de carga: `0.5` o similares, por desempeño
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `dfo()` (1/5)
+
+- Objetivo:
+    - Recorrer todo el grafo usando **búsqueda en profundidad**
+    - Registrar el orden de visita de los vértices:
+        - Pre-orden
+        - Post-orden
+        - Post-orden inverso (orden topológico)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `dfo()` (1/6)
+
+```python
+def dfo(my_graph):
+    """
+    Ejecuta un recorrido Depth First Order (DFO) sobre todo el grafo.
+
+    Visita todos los vértices (incluso en componentes desconectadas) y 
+    construye una estructura con los órdenes de recorrido: 
+    preorden, postorden y postorden inverso.
+
+    :param my_graph: Grafo a recorrer.
+    :type my_graph: adj_list_graph
+
+    :returns: Estructura de búsqueda con el resultado del recorrido.
+    :rtype: :ref:`dfo_search`
+    """
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `dfo()` (2/6)
+
+```python
+from DataStructures.Graph import digraph as dg
+
+aux_structure = new_dfo_structure(dg.order(my_graph))
+```
+
+- Se inicializa la estructura `dfo_structure` con capacidad igual al número de vértices
+    
+- Como se vio antes, la estructura tiene:
+    - `marked`: Mapa para marcar vértices visitados
+    - `pre`: Cola para almacenar el preorden
+    - `post`: Cola para almacenar el postorden
+    - `reversepost`: Pila con el postorden inverso
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `dfo()` (3/6)
+
+```python
+lista_vert = dg.vertices(my_graph)
+```
+
+- Se obtiene la lista completa de vértices del grafo
+    
+- La exploración será total: 
+	- **DFO recorre todo el grafo**
+		- Incluso si tiene componentes desconectados
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `dfo()` (4/6)
+
+```python
+for i in range(size(lista_vert)):
+    vertex = get_element(lista_vert, i)
+    if not map.contains(aux_structure["marked"], vertex):
+        dfs_vertex(my_graph, vertex, aux_structure)
+        
+return aux_structure
+```
+
+- Para cada vértice del grafo:
+    - Si **no ha sido visitado** aún:
+        - Se inicia una DFS desde ese vértice
+            
+- Así se asegura que se recorre cada componente conectado del grafo
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `dfo()` (5/6)
+
+- Al final, se retorna la estructura completa con:
+    - Qué vértices fueron visitados
+    - En qué orden se exploraron
+- El postorden inverso se usa para
+	- Obtener el orden topológico
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `dfs_vertex()` (1/4)
+
+```python
+def dfs_vertex(my_graph, key_v, aux_structure):
+    """
+    Recorre recursivamente el grafo en profundidad desde un vértice dado, 
+    actualizando los órdenes de visita en la estructura DFO.
+
+    :param my_graph: Grafo a recorrer.
+    :type my_graph: adj_list_graph
+    :param key_v: Vértice desde el que inicia el recorrido.
+    :type key_v: any
+    :param aux_structure: Estructura para registrar el recorrido.
+    :type aux_structure: dfo_search
+
+    :returns: Estructura DFO actualizada tras el recorrido.
+    :rtype: dfo_search
+    """
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `dfs_vertex()` (2/4)
+
+- Se trata de una función **recursiva**
+- Es responsable de visitar los vértices desde uno dado
+	- En profundidad
+- Actualiza las 3 estructuras de orden 
+	- En la medida que visita vértice
+		- Pre, post y post inverso
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `dfs_vertex()` (3/4)
+
+- Antes de explorar vecinos:
+    - Se agrega el vértice actual a la cola `pre`  
+        -   _Antes de visitar a los vecinos_
+    - Se marca el vértice como visitado en `marked`
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `dfs_vertex()` (4/4)
+
+- Para cada vecino no visitado:
+    - Se llama recursivamente a `dfs_vertex()`
+        
+- Luego de explorar todos los vecinos:
+    - Se agrega el vértice a `post`  
+        - _Al terminar de procesar los vecinos_
+        
+    - También se apila en `reversepost`
+	    -  Útil para obtener el orden topológico
+		    - _Al terminar de procesar los vecinos_
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<i class="fas fa-question-circle fa-2x fa-spin fa-4x"></i>
+
+<br>
+<br>
+
+ [<i class="fas fa-home  fa-3x"></i>](https://eerosales24.github.io/iph_2025_10/#)
 </div></script></section></div>
     </div>
 
