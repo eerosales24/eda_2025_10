@@ -89,7 +89,7 @@
 
 ### Estructura de Datos y Algoritmos - EDA
 
-####  *Árboles de recubrimiento*
+####  *Árboles de Recubrimiento*
 
 [Eduardo Rosales](mailto:ee.rosales24@uniandes.edu.co)
 
@@ -125,10 +125,10 @@ Universidad de los Andes
 
 - Árbol (o conjunto de árboles)
 	- Que conecta todos los vértices del grafo 
-		- con el _menor peso total_ posible
+		- Con el _menor peso total_ posible
 	- No contiene ciclos y 
-	- Utiliza solo las aristas estrictamente necesarias
-		- Para conectar todos los nodos
+		- Utiliza solo las aristas estrictamente necesarias
+			- Para conectar todos los nodos
 	
 - Peso total
 	- Suma de los pesos de todas las aristas que forman el MST
@@ -419,15 +419,278 @@ Universidad de los Andes
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
+### Algunos detalles de implementación de PRIM
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `new_prim_structure()` (1/5)
+
+- Objetivo:
+    
+    - Crear una **estructura de búsqueda** específica para el algoritmo de **Prim (MST)**
+        
+    - Inicializar los mapas y la cola de prioridad necesarios para el recorrido
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `new_prim_structure()` (2/5)
+
+
+```python
+def new_prim_structure(source, g_order):
+    """
+    Crea una estructura de búsqueda para el algoritmo de Prim (MST).
+
+    Esta función inicializa y retorna una estructura de búsqueda diseñada 
+    específicamente para el algoritmo de Prim, que permite rastrear el progreso 
+    del algoritmo durante la construcción del Árbol de Expansión Mínima (MST).
+
+    La estructura creada contiene los siguientes componentes:
+
+    - source: El vértice de inicio para el MST.
+    - edge_from: Un mapa que almacena el vértice desde el cual se alcanzó 
+      cada vértice en el MST. Inicialmente, todos los valores están en ``None``.
+    - dist_to: Un mapa que almacena las distancias mínimas conocidas desde 
+      el vértice de inicio a cada vértice. Inicialmente, todos los valores están
+      en ``None``.
+    - marked: Un mapa que indica si un vértice ha sido visitado por el algoritmo. 
+      Inicialmente, todos los valores están en ``None``.
+    - pq: Una cola de prioridad indexada (index_priority_queue) que gestiona 
+      los vértices y sus distancias en orden de prioridad. Inicialmente, está vacía.
+
+    :param source: El vértice de inicio para el MST.
+    :type source: any
+    :param g_order: El número total de vértices en el grafo.
+    :type g_order: int
+
+    :return: La estructura de búsqueda inicializada para el algoritmo de Prim.
+    :rtype: dict
+    """
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `new_prim_structure()` (3/5)
+
+- Crear la estructura inicial:
+
+```python
+structure = {
+    "source": source,
+    "edge_from": map.new_map(g_order, 0.5),
+    "dist_to": map.new_map(g_order, 0.5),
+    "marked": map.new_map(g_order, 0.5),
+    "pq": pq.new_heap(),
+}
+```
+
+- `source`: Vértice inicial del MST
+    
+- `edge_from`: Mapa para registrar la arista que conecta cada vértice
+    
+- `dist_to`: Mapa para registrar las distancias mínimas conocidas
+    
+- `marked`: Mapa para indicar qué vértices han sido visitados
+    
+- `pq`: Cola de prioridad (heap) para manejar los vértices
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `new_prim_structure()` (4/5)
+
+- ¿Por qué usar un mapa (`map.new_map`)?    
+    - Permite un acceso eficiente a las llaves (vértices)
+    - Mejora el desempeño del algoritmo al manejar muchos vértices
+        
+- ¿Por qué usar una cola de prioridad (`pq.new_heap`)?
+    - Ordena automáticamente los vértices según sus distancias
+    - Facilita encontrar el siguiente vértice de **menor costo**
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `new_prim_structure()` (5/5)
+
+```python
+from DataStructures.Map import map_linear_probing as map
+from DataStructures.Priority_queue import priority_queue as pq
+...
+
+def new_prim_structure(source, g_order):
+    """
+    Crea una estructura de búsqueda para el algoritmo de Prim (MST).
+
+    :param source: Vértice de inicio del MST.
+    :type source: any
+    :param g_order: Número total de vértices en el grafo.
+    :type g_order: int
+    :return: La estructura de búsqueda inicializada.
+    :rtype: dict
+    """
+    structure = {
+        "source": source,
+        "edge_from": map.new_map(g_order, 0.5),
+        "dist_to": map.new_map(g_order, 0.5),
+        "marked": map.new_map(g_order, 0.5),
+        "pq": pq.new_heap(),
+    }
+    return structure
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `prim_mst()` (1/7)
+
+- Objetivo:
+
+- Implementar el algoritmo de Prim para encontrar el 
+	- Árbol de Expansión Mínima (MST) de un **grafo no dirigido y conexo**
+    
+- Iniciar en un vértice específico (`source`)
+    
+- Expandir el MST agregando aristas de menor peso
+	- Que conecten vértices no visitados
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `prim_mst()` (2/7)
+
+```python
+from DataStructures.Graph import edge as ed
+from DataStructures.Graph import digraph as dg
+from DataStructures.Priority_queue import priority_queue as pq
+from DataStructures.Map import map_linear_probing as map
+...
+
+def prim_mst(my_graph, source):
+    """
+    Implementa el algoritmo de Prim para construir el Árbol de Expansión Mínima
+    (MST) de un grafo no dirigido y conexo. 
+
+    El algoritmo comienza en el vértice especificado (`source`) y expande el MST 
+    agregando aristas de menor peso que conectan vértices no visitados. Continúa 
+    hasta que todos los vértices alcanzables están en el MST.
+
+    :param my_graph: El grafo representado como una lista de adyacencia.
+    :type my_graph: adj_list_graph
+    :param source: El vértice de inicio del MST.
+    :type source: any
+    :return: Una estructura que contiene las aristas y distancias del MST.
+    :rtype: prim_search
+    """
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `prim_mst()` (3/7)
+
+- Inicialización de la estructura:
+
+```python
+aux_structure = prim_structure.new_prim_structure(
+    source, dg.order(my_graph))
+```
+
+Se crea la estructura de búsqueda (`aux_structure`) usando la función `new_prim_structure`:
+
+- Incluye mapas para:
+    
+    - `dist_to`: Distancias mínimas conocidas
+    - `marked`: Vértices visitados
+    - `edge_from`: Aristas que forman el MST
+        
+- Una cola de prioridad (pq) para manejar los vértices según sus distancias
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `prim_mst()` (4/7)
+
+- Configuración Inicial:
+
+```python
+vertices = dg.vertices(my_graph)
+for vert in vertices:
+    map.put(aux_structure["dist_to"], vert, math.inf)
+    map.put(aux_structure["marked"], vert, False)
+
+```
+
+- Todos los vértices se configuran inicialmente:
+    
+    - Distancia infinita (`math.inf`): 
+	    - No se conoce una conexión mínima
+        
+    - No marcados (`False`): 
+	    - No han sido visitados
+        
+- Excepción: El vértice de inicio (`source`):
+    - Distancia de **0.0** (es el punto de partida)
+    - Se agrega a la cola de prioridad (`pq`)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `prim_mst()` (5/7)
+
+- Ciclo principal del algoritmo:
+
+
+```python
+while not pq.is_empty(aux_structure["pq"]):
+    min = pq.remove(aux_structure["pq"])
+```
+
+- Mientras la cola de prioridad no esté vacía:
+
+	- Se extrae el vértice de menor costo (mínimo)
+	- Si aún no ha sido visitado:
+	    - Se marca como visitado (`marked: True`)
+	    - Se examinan sus adyacentes
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `prim_mst()` (6/7)
+
+- Explorando los vértices adyacentes:
+
+```python
+for edge in dg.adjacents(my_graph, min):
+    w = ed.to(edge)
+    if dist_to[w] > ed.weight(edge):
+        dist_to[w] = ed.weight(edge)
+        edge_from[w] = min
+        pq.insert(aux_structure["pq"], w, ed.weight(edge))
+```
+
+- Para cada vértice adyacente (`w`):
+	- Si su distancia conocida es mayor que la de la arista (`ed.weight(edge)`):
+	    - Se actualiza su distancia
+	    - Se registra la arista que lleva a ese vértice (`edge_from`)
+	    - Se agrega a la cola de prioridad (`pq`)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### `prim_mst()` (7/7)
+
+- Finalización del algoritmo:
+    
+	- El ciclo termina cuando todos los vértices conectables están en el MST
+	    
+	- La estructura de búsqueda (`aux_structure`) contiene:
+	    - El mapa de **distancias mínimas** (`dist_to`)
+	    - El mapa de **aristas del MST** (`edge_from`)
+	    - El mapa de **vértices visitados** (`marked`)
+	        
+	- Resultado:
+	    - Un MST completo que conecta 
+		    - Todos los vértices alcanzables desde el inicial
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
 <i class="fas fa-question-circle fa-2x fa-spin fa-4x"></i>
 
-
-
 <br>
 <br>
 
-
-[<i class="fas fa-home  fa-3x"></i>](https://eerosales24.github.io/eda_2025_10/#)
+ [<i class="fas fa-home  fa-3x"></i>](https://eerosales24.github.io/eda_2025_10/#)
 </div></script></section></div>
     </div>
 
