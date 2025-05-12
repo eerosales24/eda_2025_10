@@ -542,13 +542,13 @@ def new_prim_structure(source, g_order):
 
 - Objetivo:
 
-- Implementar el algoritmo de Prim para encontrar el 
-	- Árbol de Expansión Mínima (MST) de un **grafo no dirigido y conexo**
-    
-- Iniciar en un vértice específico (`source`)
-    
-- Expandir el MST agregando aristas de menor peso
-	- Que conecten vértices no visitados
+	- Implementar el algoritmo de Prim para encontrar el 
+		- Árbol de Expansión Mínima (MST) de un **grafo no dirigido y conexo**
+	    
+	- Iniciar en un vértice inicial (`source`)
+	    
+	- Expandir el MST agregando aristas de menor peso
+		- Que conecten vértices no visitados
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -672,7 +672,7 @@ for edge in dg.adjacents(my_graph, min):
 
 - Finalización del algoritmo:
     
-	- El ciclo termina cuando todos los vértices conectables están en el MST
+	- El ciclo termina cuando todos los vértices alcanzables están en el MST
 	    
 	- La estructura de búsqueda (`aux_structure`) contiene:
 	    - El mapa de **distancias mínimas** (`dist_to`)
@@ -682,6 +682,40 @@ for edge in dg.adjacents(my_graph, min):
 	- Resultado:
 	    - Un MST completo que conecta 
 		    - Todos los vértices alcanzables desde el inicial
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz I
+
+<img src="Pasted image 20250512134029.png" alt="" style="width: 40%; height: 45%; object-fit: fill">
+
+
+¿Cuál de los siguientes describe un MST válido encontrado al usar el algoritmo de PRIM, iniciando desde el vértice 1 e ignorando las direcciones de los arcos?
+
+A.     [(1,7), (7,4), (7,2), (2,3), (7,5), (5,6)]
+
+B.     [(1,7), (7,2), (2,3), (7,5), (5,6), (7,4)]
+
+C.     [(1,7), (7,2), (7,3), (7,4), (7,5), (5,6)]
+
+D.    [(1,7), (7,2), (2,3), (7,4), (7,5), (5,6)]
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz I - Solución
+
+<img src="Pasted image 20250512134029.png" alt="" style="width: 40%; height: 45%; object-fit: fill">
+
+
+¿Cuál de los siguientes describe un MST válido encontrado al usar el algoritmo de PRIM, iniciando desde el vértice 1 e ignorando las direcciones de los arcos?
+
+A.     [(1,7), (7,4), (7,2), (2,3), (7,5), (5,6)]
+
+B.     [(1,7), (7,2), (2,3), (7,5), (5,6), (7,4)]
+
+C.     [(1,7), (7,2), (7,3), (7,4), (7,5), (5,6)]
+
+**D.    [(1,7), (7,2), (2,3), (7,4), (7,5), (5,6)]**
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 

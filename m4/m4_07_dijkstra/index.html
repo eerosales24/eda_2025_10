@@ -106,8 +106,8 @@ Universidad de los Andes
         
 - **Objetivo**
     - Encontrar la distancia mínima 
-	    - Desde un nodo raíz 
-		    - A todos los demás nodos
+	    - **Desde un nodo inicial específico**
+		    - A **todos** los demás nodos
         
 - **Aplicaciones**
     - Problemas de ruta más corta
@@ -125,8 +125,9 @@ Universidad de los Andes
 
 	<br>
 
-	- MST es único para un grafo dado (si todos los pesos son únicos)
-	- SPT depende del nodo inicial
+	- MST es único para un grafo dado
+		- Si todos los pesos son únicos
+	- En cambio, SPT depende del nodo inicial
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
@@ -163,7 +164,7 @@ Universidad de los Andes
 - Los vértices se procesan en orden 
 	- De **menor distancia acumulada**
     
--  Cada vértice se visite una sola vez 
+-  Cada vértice se visita una sola vez 
 	- En su mejor versión (menor distancia)
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
@@ -178,10 +179,10 @@ Universidad de los Andes
 	    - Como **infinito**
         
     - Usar un mapa (`dist_to`) 
-	    - Para rastrear las distancias mínimas conocidas
+	    - Para guardar las distancias mínimas conocidas
         
     - Usar un mapa (`edge_from`) 
-	    - Para rastrear la arista previa (ruta)
+	    - Para guardar la arista previa (ruta)
         
     - Agregar el vértice inicial a la cola de prioridad
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
@@ -661,6 +662,172 @@ def dist_to(key_v, aux_structure):
     - Flexibilidad:
 	    - Permite extenderse a otros algoritmos 
 		    - Que usen estructuras similares
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz I
+
+-  Si después de ejecutar el algoritmo de Dijkstra en un grafo dirigido, conectado desde un vértice `s`, se encuentra un arco que aún puede ser relajado, ¿qué implica esto?
+
+
+	<br>
+
+	- A. Dijkstra terminó correctamente y encontró los caminos más cortos desde `s`
+	
+	- B. Dijkstra terminó correctamente y encontró el MST desde `s`
+	
+	- C. El grafo tiene ciclos
+	
+	- **D. El grafo puede tener arcos con pesos negativos**
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz I - Solución
+
+-  Si después de ejecutar el algoritmo de Dijkstra en un grafo dirigido, conectado desde un vértice `s`, se encuentra un arco que aún puede ser relajado, ¿qué implica esto?
+
+	<br>
+
+	- A. Dijkstra terminó correctamente y encontró los caminos más cortos desde `s`
+	
+	- B. Dijkstra terminó correctamente y encontró el MST desde `s`
+	
+	- C. El grafo tiene ciclos
+	
+	- **D. El grafo puede tener arcos con pesos negativos**
+
+- **Explicación:**  Dijkstra no funciona correctamente con arcos de **peso negativo** debido a que fallaría la suposición de que un camino más corto a un vértice dado, no cambiaría si se exploran más y más vértices
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz II
+
+- Si el algoritmo de Dijkstra indica que el costo del camino de un vértice `S` a un vértice `V` es infinito, ¿qué significa esto?
+
+	<br>
+
+	- A. No hay camino de `S` a `V`
+		
+	- B. Hay arcos con costos muy bajos
+		
+	- C. El grafo tiene ciclos
+		
+	- D. Hay un arco con un costo muy alto
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz II - Solución
+
+- Si el algoritmo de Dijkstra indica que el costo del camino de un vértice `S` a un vértice `V` es infinito, ¿qué significa esto?
+
+	<br>
+
+- **A. No hay camino de `S` a `V`**
+	
+- B. Hay arcos con costos muy bajos
+	
+- C. El grafo tiene ciclos
+	
+- D. Hay un arco con un costo muy alto
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz III
+
+- En un grafo dirigido donde los arcos tienen costos positivos y existe un arco X -> Y, y NO existe el arco Y -> X, ¿qué propiedad NO garantiza el algoritmo de Dijkstra?
+
+- A. Cálculo de los vértices alcanzables desde el vértice origen
+
+- B. Orden de complejidad temporal O(E log V) en el peor caso
+
+- C. Para un vértice Y alcanzable desde el vértice inicial X, permite encontrar un camino de X a Y y un camino de regreso de Y a X
+
+- D. Cálculo de caminos de costo mínimo desde el vértice origen
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz III - Solución
+
+- En un grafo dirigido donde los arcos tienen costos positivos y existe un arco X -> Y, y NO existe el arco Y -> X, ¿qué propiedad NO garantiza el algoritmo de Dijkstra?
+
+- A. Cálculo de los vértices alcanzables desde el vértice origen
+
+- B. Orden de complejidad temporal O(E log V)
+
+- **C. Para un vértice Y alcanzable desde el vértice inicial X, permite encontrar un camino de X a Y y un camino de regreso de Y a X**
+
+- D. Cálculo de caminos de costo mínimo desde el vértice origen
+
+	<br>
+
+- **Explicación:**  Dijkstra solo garantiza encontrar el camino más corto de un vértice inicial a todos los demás vértices de un grafo conexo y ponderado con pesos positivos, respetando las direcciones de los arcos. No garantiza encontrar caminos de retorno
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz IV
+
+- ¿Cuál condición no es necesaria para el algoritmo de Dijkstra?
+
+- A. Todas las ponderaciones de los arcos deben ser positivas
+
+ - B. Se necesita seleccionar un vértice origen
+
+- C. El grafo no debe tener ciclos
+
+- D. Ninguna de las anteriores
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz IV - Solución
+
+- ¿Cuál condición no es necesaria para el algoritmo de Dijkstra?
+
+- A. Todas las ponderaciones de los arcos deben ser positivas
+
+ - B. Se necesita seleccionar un vértice origen
+
+- **C. El grafo no debe tener ciclos**
+
+- D. Ninguna de las anteriores
+
+
+<br>
+
+- **Explicación:** Dijkstra puede aplicarse a cualquier grafo dirigido con pesos no negativos, no necesariamente un DAG. Puede manejar ciclos siempre y cuando los pesos de los arcos sean no negativos
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz V
+
+<img src="Pasted image 20250512134029.png" alt="" style="width: 40%; height: 45%; object-fit: fill">
+
+
+Usando el algoritmo de Dijkstra, ¿cuál de los siguientes es el peso del camino más corto entre el vértice origen 2 y el vértice 6?
+
+- A.     9
+
+- B.     8
+
+- C.    6
+
+- D.    5
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quiz V - Solución
+
+<img src="Pasted image 20250512134029.png" alt="" style="width: 40%; height: 45%; object-fit: fill">
+
+
+Usando el algoritmo de Dijkstra, ¿cuál de los siguientes es el peso del camino más corto entre el vértice origen 2 y el vértice 6?
+
+- A.     9
+
+- B.     8
+
+- **C.**     **6 (2-7-5-6)**
+
+- D.    5
 </div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="#f8f8f8" -->
 <div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
 
